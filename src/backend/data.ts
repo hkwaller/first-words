@@ -4,6 +4,6 @@ type State = {
   words: Word[]
 }
 
-export const state = easyStore<State>({
+export const store = easyStore<State>({
   words: [],
 })
