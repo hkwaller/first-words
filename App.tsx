@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react'
+import { view } from '@risingstack/react-easy-state'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { getWords } from './src/backend/api'
+import { state } from './src/backend/data'
+import Start from './src/screens/start/Start'
+import FreePlay from './src/screens/free-play/FreePlay'
 
-export default function App() {
+const Stack = createStackNavigator()
+
+function App() {
+  useEffect(() => {
+    async function t() {
+      const words = await getWords()
+      state.words = words
+    }
+
+    t()
+  }, [])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Start" component={Start} />
+        <Stack.Screen name="FreePlay" component={FreePlay} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default view(App)
