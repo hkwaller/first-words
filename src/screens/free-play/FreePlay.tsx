@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
 import { StatusBar } from 'expo-status-bar'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
 import { store } from 'src/backend/data'
-import { colors } from 'src/config/constants'
-import { useNavigation } from '@react-navigation/native'
+import { getColor } from 'src/config/helpers'
+import Button from 'src/components/Button'
 
 function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -14,9 +15,9 @@ function FreePlay() {
 
   const backgroundStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: withTiming(colors[activeIndex]),
+      backgroundColor: withTiming(getColor()),
     }
-  })
+  }, [activeIndex])
 
   return (
     <>

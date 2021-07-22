@@ -12,7 +12,7 @@ export const ButtonText = styled.Text`
   color: palevioletred;
 `
 
-export const Button = styled.TouchableOpacity`
+export const ButtonContainer = styled.TouchableOpacity`
   font-family: 'AvocadoCreamy';
   font-size: 60px;
   padding: 20px;

@@ -21,7 +21,6 @@ type Props = {
 function Word({ word, index, isActive, updateIndex }: Props) {
   const x = useSharedValue(0)
   const y = useSharedValue(0)
-  const scale = useSharedValue(0.9)
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, ctx: any) => {
@@ -36,15 +35,12 @@ function Word({ word, index, isActive, updateIndex }: Props) {
       if (x.value > 50) {
         runOnJS(updateIndex)()
         x.value = withSpring(1000)
-        scale.value = 1
       } else if (x.value < -50) {
         runOnJS(updateIndex)()
         x.value = withSpring(-1000)
-        scale.value = 1
       } else if (y.value > 50) {
         runOnJS(updateIndex)()
         y.value = withSpring(1000)
-        scale.value = 1
       } else if (y.value < -50) {
         runOnJS(updateIndex)()
         y.value = withSpring(-1000)
@@ -52,7 +48,6 @@ function Word({ word, index, isActive, updateIndex }: Props) {
         x.value = withSpring(0)
         y.value = withSpring(0)
       }
-      scale.value = 1
     },
   })
 
@@ -62,7 +57,6 @@ function Word({ word, index, isActive, updateIndex }: Props) {
         { translateX: x.value },
         { translateY: y.value },
         { rotateZ: withSpring(index % 2 === 0 ? 0.03 : -0.03) },
-        { scale: scale.value },
       ],
     }
   })
