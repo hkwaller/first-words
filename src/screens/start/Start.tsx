@@ -11,7 +11,7 @@ function Start(props: Props) {
 
   return (
     <SafeAreaView style={{ padding: 30 }}>
-      <Header style={{ marginBottom: 40 }}>Start</Header>
+      <Header style={{ marginBottom: 40 }}>emma.</Header>
       <Button
         title="Begynn å lære"
         onPress={() => {

@@ -21,4 +21,5 @@ export const ButtonContainer = styled.TouchableOpacity`
   color: black;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 `
