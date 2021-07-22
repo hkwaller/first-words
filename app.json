@@ -15,13 +15,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "no.hkwaller.first-words",
+      "buildNumber": "1.0.0",
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "no.hkwaller.firstwords",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
