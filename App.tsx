@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { view } from '@risingstack/react-easy-state'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import AppLoading from 'expo-app-loading'
+import { useFonts } from 'expo-font'
 import { getWords } from './src/backend/api'
 import { store } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
@@ -18,6 +20,12 @@ function App() {
 
     t()
   }, [])
+
+  let [fontsLoaded] = useFonts({
+    AvocadoCreamy: require('./assets/fonts/AvocadoCreamy.otf'),
+  })
+
+  if (!fontsLoaded) return <AppLoading />
 
   return (
     <NavigationContainer>
