@@ -1,6 +1,5 @@
 import { token } from '../../token'
 import imageUrlBuilder from '@sanity/image-url'
-import { store } from './data'
 
 const sanityClient = require('@sanity/client')
 
@@ -11,8 +10,6 @@ const client = sanityClient({
   token: token,
   useCdn: false,
 })
-
-const baseLanguage = 'no'
 
 const builder = imageUrlBuilder(client)
 

@@ -13,7 +13,7 @@ import FreePlay from 'src/screens/free-play/FreePlay'
 import { getValueFor } from 'src/config/helpers'
 
 i18n.translations = {
-  sv: { start: 'Börja att lära' },
+  sv: { start: 'Börja lära' },
   en: { start: 'Start to learn' },
   no: { start: 'Begynn å lære' },
 }
@@ -25,9 +25,9 @@ function App() {
     async function t() {
       const words = await getWords()
       const settings = await getValueFor('settings')
-
       state.words = words
       state.settings = JSON.parse(settings as any)
+      i18n.locale = state.settings.language
     }
 
     t()
