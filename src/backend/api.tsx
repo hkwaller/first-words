@@ -21,14 +21,30 @@ export function urlFor(source: any) {
 
 export async function getWords() {
   const query = '*[_type == "word"]{...}'
-
-  return await client.fetch(query).then(words => {
+  const words = await client.fetch(query).then((words: Word[]) => {
     return words.map((w: Word) => {
       return {
-        word: w.word[baseLanguage],
+        word: w.word[baseLanguage as any],
         _id: w._id,
         image: w.image,
       }
     })
   })
+
+  const shuffledWords = shuffle(words)
+
+  return shuffledWords
+}
+
+function shuffle(array: Word[]) {
+  var currentIndex = array.length,
+    randomIndex
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+    ;[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+  }
+
+  return array
 }

@@ -33,14 +33,26 @@ function Word({ word, index, isActive, updateIndex }: Props) {
       y.value = ctx.startY + event.translationY
     },
     onEnd: _ => {
-      if (x.value > 200) {
+      if (x.value > 50) {
         runOnJS(updateIndex)()
         x.value = withSpring(1000)
         scale.value = 1
+      } else if (x.value < -50) {
+        runOnJS(updateIndex)()
+        x.value = withSpring(-1000)
+        scale.value = 1
+      } else if (y.value > 50) {
+        runOnJS(updateIndex)()
+        y.value = withSpring(1000)
+        scale.value = 1
+      } else if (y.value < -50) {
+        runOnJS(updateIndex)()
+        y.value = withSpring(-1000)
       } else {
         x.value = withSpring(0)
+        y.value = withSpring(0)
       }
-      y.value = withSpring(0)
+      scale.value = 1
     },
   })
 
@@ -49,7 +61,7 @@ function Word({ word, index, isActive, updateIndex }: Props) {
       transform: [
         { translateX: x.value },
         { translateY: y.value },
-        { rotateZ: withSpring(isActive ? 0 : index % 2 === 0 ? 0.03 : -0.03) },
+        { rotateZ: withSpring(index % 2 === 0 ? 0.03 : -0.03) },
         { scale: scale.value },
       ],
     }
