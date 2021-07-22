@@ -1,5 +1,5 @@
 type Word = {
   _id: string
-  word: string
+  word: any
   image: ImageData
 }

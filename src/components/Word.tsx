@@ -8,6 +8,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
+import { state } from 'src/backend/data'
 import { CARD_WIDTH } from 'src/config/constants'
 import { urlFor } from '../backend/api'
 
@@ -65,14 +66,14 @@ function Word({ word, index, isActive, updateIndex }: Props) {
     <PanGestureHandler onGestureEvent={gestureHandler}>
       <Animated.View style={[styles.container, animatedStyle, { zIndex: 200 - index }]}>
         <Text style={{ fontFamily: 'AvocadoCreamy', fontSize: 60, marginBottom: 20 }}>
-          {word.word}
+          {word.word[state.settings.language]}
         </Text>
         <Image
           width={100}
           height={100}
           resizeMode="contain"
           style={{ width: CARD_WIDTH - 70, height: CARD_WIDTH - 70 }}
-          source={{ uri: urlFor(word.image).width(200).url()! }}
+          source={{ uri: urlFor(word.image).width(CARD_WIDTH).url()! }}
         />
       </Animated.View>
     </PanGestureHandler>

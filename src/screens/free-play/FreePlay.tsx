@@ -5,9 +5,22 @@ import { StatusBar } from 'expo-status-bar'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
-import { store } from 'src/backend/data'
-import { getColor } from 'src/config/helpers'
+import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
+
+function getColor() {
+  'worklet'
+
+  return (
+    'hsl(' +
+    360 * Math.random() +
+    ',' +
+    (25 + 70 * Math.random()) +
+    '%,' +
+    (85 + 10 * Math.random()) +
+    '%)'
+  )
+}
 
 function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -23,7 +36,7 @@ function FreePlay() {
     <>
       <StatusBar style="auto" />
       <Animated.View style={[styles.container, backgroundStyle]}>
-        {store.words.map((word, index) => {
+        {state.words.map((word, index) => {
           return (
             <Word
               key={word._id}
@@ -36,7 +49,7 @@ function FreePlay() {
             />
           )
         })}
-        {activeIndex === store.words.length && (
+        {activeIndex === state.words.length && (
           <Button
             title="Tilbake"
             onPress={() => {

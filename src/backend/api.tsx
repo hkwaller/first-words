@@ -1,5 +1,6 @@
 import { token } from '../../token'
 import imageUrlBuilder from '@sanity/image-url'
+import { store } from './data'
 
 const sanityClient = require('@sanity/client')
 
@@ -24,7 +25,7 @@ export async function getWords() {
   const words = await client.fetch(query).then((words: Word[]) => {
     return words.map((w: Word) => {
       return {
-        word: w.word[baseLanguage as any],
+        word: w.word,
         _id: w._id,
         image: w.image,
       }

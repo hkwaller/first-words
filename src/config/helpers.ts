@@ -1,13 +1,16 @@
-export function getColor() {
-  'worklet'
+import * as SecureStore from 'expo-secure-store'
 
-  return (
-    'hsl(' +
-    360 * Math.random() +
-    ',' +
-    (25 + 70 * Math.random()) +
-    '%,' +
-    (85 + 10 * Math.random()) +
-    '%)'
-  )
+export async function save(key: string, value: string) {
+  await SecureStore.setItemAsync(key, value)
+}
+
+export async function getValueFor(key: string) {
+  let result = await SecureStore.getItemAsync(key)
+  if (result) {
+    console.log("🔐 Here's your value 🔐 \n" + result)
+    return result
+  } else {
+    console.log('No values stored under that key.')
+    return undefined
+  }
 }
