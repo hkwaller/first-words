@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 type Props = {}
 
@@ -8,7 +9,7 @@ function Start(props: Props) {
   const navigation = useNavigation()
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Start</Text>
       <Button
         title="Free play"
@@ -16,7 +17,7 @@ function Start(props: Props) {
           navigation.navigate('FreePlay')
         }}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 export default Start

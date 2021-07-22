@@ -1,23 +1,13 @@
-import React from 'react'
-import { StyleSheet, ScrollView, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
 import { StatusBar } from 'expo-status-bar'
 import Word from 'src/components/Word'
 import { store } from 'src/backend/data'
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from 'src/config/constants'
 import { useSharedValue } from 'react-native-reanimated'
 
 function FreePlay() {
-  const activeIndex = useSharedValue(0)
-
-  function setActiveIndex(val: number) {
-    'worklet'
-    activeIndex.value = val
-  }
-  console.log(
-    '🚀 ~ file: FreePlay.tsx ~ line 16 ~ setActiveIndex ~ activeIndex.value',
-    activeIndex.value,
-  )
+  const [activeIndex, setActiveIndex] = useState(0)
 
   return (
     <>
@@ -28,8 +18,10 @@ function FreePlay() {
             <Word
               key={word._id}
               index={index}
-              isActive={activeIndex.value === index}
-              setActiveIndex={setActiveIndex}
+              isActive={activeIndex === index}
+              updateIndex={() => {
+                setActiveIndex(index + 1)
+              }}
               {...{ word }}
             />
           )
@@ -44,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#AEE1E1',
   },
 })
 

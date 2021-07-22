@@ -29,7 +29,11 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="FreePlay" component={FreePlay} />
       </Stack.Navigator>
