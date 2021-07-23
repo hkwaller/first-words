@@ -2,15 +2,15 @@ import { state } from './data'
 
 export const translations = {
   no: {
-    start: 'Begynn å lære',
+    start: 'Ordlek',
     back: 'Tilbake',
   },
   sv: {
-    start: 'Börja lära',
+    start: 'Ordlek',
     back: 'Tilbaka',
   },
   en: {
-    start: 'Start to learn',
+    start: 'Word game',
     back: 'Return',
   },
 }

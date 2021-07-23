@@ -1,3 +1,5 @@
+import { baseLanguage } from './schema'
+
 export default {
   name: 'category',
   title: 'Category',
@@ -6,12 +8,12 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
+      type: 'localeString',
     },
   ],
+  preview: {
+    select: {
+      title: `title.en`,
+    },
+  },
 }

@@ -3,7 +3,6 @@ import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { view } from '@risingstack/react-easy-state'
-import i18n from 'i18n-js'
 import { Header } from 'src/components/styled'
 import Button from 'src/components/Button'
 import { state } from 'src/backend/data'
@@ -33,7 +32,6 @@ function Start() {
 }
 
 function saveLanguage(lang: Languages) {
-  i18n.locale = lang
   state.settings = { language: lang }
   save('settings', JSON.stringify(state.settings))
 }

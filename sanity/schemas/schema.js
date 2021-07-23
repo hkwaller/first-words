@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // We import object and document schemas
 import word from './word'
 import session from './session'
+import category from './category'
 
 const supportedLanguages = [
   { id: 'en', title: 'English', isDefault: true },
@@ -27,7 +28,6 @@ const localeString = {
     {
       title: 'Translations',
       name: 'translations',
-      options: { collapsible: true },
     },
   ],
   // Dynamically define one field per language
@@ -51,6 +51,7 @@ export default createSchema({
     word,
     localeString,
     session,
+    category,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
   ]),
