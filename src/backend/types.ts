@@ -3,3 +3,5 @@ type Word = {
   word: any
   image: ImageData
 }
+
+type Languages = 'no' | 'sv' | 'en'

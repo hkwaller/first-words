@@ -15,8 +15,8 @@ const Stack = createStackNavigator()
 function App() {
   useEffect(() => {
     async function t() {
-      const words = await getWords()
       const settings = await getValueFor('settings')
+      const words = await getWords()
       state.words = words
       state.settings = JSON.parse(settings as any)
     }
@@ -28,7 +28,7 @@ function App() {
     AvocadoCreamy: require('./assets/fonts/AvocadoCreamy.otf'),
   })
 
-  if (!fontsLoaded) return <AppLoading />
+  if (!fontsLoaded || !state.settings) return <AppLoading />
 
   return (
     <NavigationContainer>

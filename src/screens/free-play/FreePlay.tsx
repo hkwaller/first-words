@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
 import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
+import { t } from 'src/backend/lang'
 
 function getColor() {
   'worklet'
@@ -51,7 +52,7 @@ function FreePlay() {
         })}
         {activeIndex === state.words.length && (
           <Button
-            title="Tilbake"
+            title={t('back')}
             onPress={() => {
               navigation.goBack()
             }}

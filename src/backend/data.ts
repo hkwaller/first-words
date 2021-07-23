@@ -4,19 +4,14 @@ import i18n from 'i18n-js'
 
 type State = {
   words: Word[]
-  settings: {
-    language: 'no' | 'sv' | 'en'
-  }
+  settings:
+    | {
+        language: 'no' | 'sv' | 'en'
+      }
+    | undefined
 }
 
 export const state = easyStore<State>({
   words: [],
-  settings: {
-    language: 'no',
-  },
-})
-
-autoEffect(() => {
-  save('settings', JSON.stringify(state.settings))
-  i18n.locale = state.settings.language
+  settings: undefined,
 })

@@ -1,12 +1,15 @@
 import React from 'react'
+import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { View } from 'react-native'
+import { view } from '@risingstack/react-easy-state'
+import i18n from 'i18n-js'
 import { Header } from 'src/components/styled'
 import Button from 'src/components/Button'
 import { state } from 'src/backend/data'
-import { translate } from 'src/backend/lang'
-import { view } from '@risingstack/react-easy-state'
+import { t } from 'src/backend/lang'
+import { save } from 'src/config/helpers'
+import SmallButton from 'src/components/SmallButton'
 
 function Start() {
   const navigation = useNavigation()
@@ -15,39 +18,24 @@ function Start() {
     <SafeAreaView style={{ padding: 30 }}>
       <Header style={{ marginBottom: 40 }}>emma.</Header>
       <Button
-        title={translate('start')}
+        title={t('start')}
         onPress={() => {
           navigation.navigate('FreePlay')
         }}
       />
-      <View style={{ flexDirection: 'row' }}>
-        <Button
-          title="Norsk"
-          onPress={() =>
-            (state.settings = {
-              language: 'no',
-            })
-          }
-        />
-        <Button
-          title="Svenska"
-          onPress={() =>
-            (state.settings = {
-              language: 'sv',
-            })
-          }
-        />
-        <Button
-          title="English"
-          onPress={() =>
-            (state.settings = {
-              language: 'en',
-            })
-          }
-        />
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 }}>
+        <SmallButton title="Norsk" onPress={() => saveLanguage('no')} />
+        <SmallButton title="Svenska" onPress={() => saveLanguage('sv')} />
+        <SmallButton title="English" onPress={() => saveLanguage('en')} />
       </View>
     </SafeAreaView>
   )
+}
+
+function saveLanguage(lang: Languages) {
+  i18n.locale = lang
+  state.settings = { language: lang }
+  save('settings', JSON.stringify(state.settings))
 }
 
 export default view(Start)

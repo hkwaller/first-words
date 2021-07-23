@@ -13,9 +13,17 @@ export const ButtonText = styled.Text`
 `
 
 export const ButtonContainer = styled.TouchableOpacity`
-  font-family: 'AvocadoCreamy';
-  font-size: 60px;
   padding: 20px;
+  font-weight: bold;
+  border: 2px solid palevioletred;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`
+
+export const SmallButtonContainer = styled.TouchableOpacity`
+  padding: 10px;
   font-weight: bold;
   border: 2px solid palevioletred;
   color: black;
