@@ -7,8 +7,18 @@ export const Header = styled.Text`
 `
 
 export const ButtonText = styled.Text`
-  font-size: 40px;
+  font-family: 'AvocadoCreamy';
+  font-size: 60px;
   font-weight: bold;
+`
+export const BodyText = styled.Text`
+  font-family: 'AvocadoCreamy';
+  font-size: 20px;
+`
+export const NameText = styled.Text`
+  font-family: 'AvocadoCreamy';
+  color: #ecafac;
+  font-size: 60px;
 `
 
 export const ButtonContainer = styled.TouchableOpacity<{ color: string; rotation: number }>`
@@ -22,7 +32,6 @@ export const ButtonContainer = styled.TouchableOpacity<{ color: string; rotation
   min-height: 180px;
   background-color: ${props => props.color || '#aae0fc'};
   transform: ${props => `rotate(${props.rotation || 2}deg)`};
-  overflow: hidden;
 `
 
 export const SmallButtonContainer = styled.TouchableOpacity`

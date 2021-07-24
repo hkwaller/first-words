@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { StatusBar } from 'expo-status-bar'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
+import { view } from '@risingstack/react-easy-state'
 import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
 import Button from 'src/components/Button'
-import Word from 'src/components/Word'
 import { getColor } from '../free-play/FreePlay'
-import { view } from '@risingstack/react-easy-state'
 import Letter from 'src/components/Letter'
 
 type Props = {}
@@ -25,7 +23,6 @@ function Alphabet() {
 
   return (
     <>
-      <StatusBar style="auto" />
       <Animated.View style={[styles.container, backgroundStyle]}>
         {state.alphabet.map((letter, index) => {
           return (

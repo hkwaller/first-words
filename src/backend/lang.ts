@@ -5,16 +5,19 @@ export const translations = {
     start: 'Ordlek',
     back: 'Tilbake',
     abc: 'Alfabet',
+    welcome: 'Velkommen',
   },
   sv: {
     start: 'Ordlek',
     back: 'Tilbaka',
     abc: 'Alfabetet',
+    welcome: 'Välkommen',
   },
   en: {
     start: 'Word game',
     back: 'Return',
     abc: 'Alphabet',
+    welcome: 'Welcome',
   },
 }
 

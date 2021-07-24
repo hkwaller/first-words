@@ -11,7 +11,7 @@ type Props = {
   backgroundColor?: string
   rotation?: number
   invert?: boolean
-  image: ImageSourcePropType
+  image?: ImageSourcePropType
 }
 
 function Button({
@@ -26,19 +26,34 @@ function Button({
   const bottomColor = invert ? '#F3AECE' : '#A0C1FF'
 
   return (
-    <ButtonContainer onPress={onPress} color={backgroundColor} rotation={rotation}>
+    <ButtonContainer
+      onPress={onPress}
+      color={backgroundColor}
+      rotation={rotation}
+      style={{
+        marginBottom: 20,
+        shadowColor: 'gray',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 3,
+      }}
+    >
       <TopLine style={[styles.line, styles.topLine]} color={topColor} />
       <BottomLine style={[styles.line, styles.bottomLine]} color={bottomColor} />
       <View style={styles.container}>
         {invert ? (
           <>
-            <Image source={image} />
-            <ButtonText style={{ marginHorizontal: 15, color: '#636161' }}>{title}</ButtonText>
+            {image && <Image source={image} />}
+            <ButtonText style={{ marginHorizontal: 15 }}>{title}</ButtonText>
           </>
         ) : (
           <>
-            <ButtonText style={{ marginHorizontal: 15, color: '#636161' }}>{title}</ButtonText>
-            <Image source={image} />
+            <ButtonText style={{ marginHorizontal: 15 }}>{title}</ButtonText>
+            {image && <Image source={image} />}
           </>
         )}
       </View>
@@ -57,11 +72,11 @@ const styles = StyleSheet.create({
   },
   topLine: {
     right: 20,
-    top: -5,
+    top: 0,
   },
   bottomLine: {
     left: 20,
-    bottom: -5,
+    bottom: 0,
   },
 })
 export default Button

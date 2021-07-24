@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
-import { StatusBar } from 'expo-status-bar'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
@@ -21,7 +20,6 @@ function FreePlay() {
 
   return (
     <>
-      <StatusBar style="auto" />
       <Animated.View style={[styles.container, backgroundStyle]}>
         {state.words.map((word, index) => {
           return (
