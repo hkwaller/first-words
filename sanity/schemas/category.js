@@ -1,5 +1,3 @@
-import { baseLanguage } from './schema'
-
 export default {
   name: 'category',
   title: 'Category',

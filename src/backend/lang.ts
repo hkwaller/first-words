@@ -4,14 +4,17 @@ export const translations = {
   no: {
     start: 'Ordlek',
     back: 'Tilbake',
+    abc: 'Alfabet',
   },
   sv: {
     start: 'Ordlek',
     back: 'Tilbaka',
+    abc: 'Alfabetet',
   },
   en: {
     start: 'Word game',
     back: 'Return',
+    abc: 'Alphabet',
   },
 }
 

@@ -34,7 +34,20 @@ export async function getWords() {
   return shuffledWords
 }
 
-function shuffle(array: Word[]) {
+export function shuffle(array: Word[]) {
+  var currentIndex = array.length,
+    randomIndex
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+    ;[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+  }
+
+  return array
+}
+
+export function shuffleLetters(array: string[]) {
   var currentIndex = array.length,
     randomIndex
 

@@ -9,6 +9,7 @@ import { state } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
 import FreePlay from 'src/screens/free-play/FreePlay'
 import { getValueFor } from 'src/config/helpers'
+import Alphabet from 'src/screens/alphabet/Alphabet'
 
 const Stack = createStackNavigator()
 
@@ -39,6 +40,7 @@ function App() {
       >
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="FreePlay" component={FreePlay} />
+        <Stack.Screen name="Alphabet" component={Alphabet} />
       </Stack.Navigator>
     </NavigationContainer>
   )

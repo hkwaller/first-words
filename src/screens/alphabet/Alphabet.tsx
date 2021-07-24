@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { view } from '@risingstack/react-easy-state'
+import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
-import { useNavigation } from '@react-navigation/native'
-import Word from 'src/components/Word'
 import { state } from 'src/backend/data'
-import Button from 'src/components/Button'
 import { t } from 'src/backend/lang'
+import Button from 'src/components/Button'
+import Word from 'src/components/Word'
+import { getColor } from '../free-play/FreePlay'
+import { view } from '@risingstack/react-easy-state'
+import Letter from 'src/components/Letter'
 
-function FreePlay() {
+type Props = {}
+
+function Alphabet() {
   const [activeIndex, setActiveIndex] = useState(0)
   const navigation = useNavigation()
 
@@ -23,16 +27,16 @@ function FreePlay() {
     <>
       <StatusBar style="auto" />
       <Animated.View style={[styles.container, backgroundStyle]}>
-        {state.words.map((word, index) => {
+        {state.alphabet.map((letter, index) => {
           return (
-            <Word
-              key={word._id}
+            <Letter
+              key={index}
               index={index}
               isActive={activeIndex === index}
               updateIndex={() => {
                 setActiveIndex(index + 1)
               }}
-              {...{ word }}
+              {...{ letter }}
             />
           )
         })}
@@ -58,18 +62,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export function getColor() {
-  'worklet'
-
-  return (
-    'hsl(' +
-    360 * Math.random() +
-    ',' +
-    (25 + 70 * Math.random()) +
-    '%,' +
-    (85 + 10 * Math.random()) +
-    '%)'
-  )
-}
-
-export default view(FreePlay)
+export default view(Alphabet)

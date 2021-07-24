@@ -9,6 +9,8 @@ import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
 import { save } from 'src/config/helpers'
 import SmallButton from 'src/components/SmallButton'
+import { shuffle, shuffleLetters } from 'src/backend/api'
+import { ALPHABET } from 'src/config/constants'
 
 function Start() {
   const navigation = useNavigation()
@@ -19,7 +21,17 @@ function Start() {
       <Button
         title={t('start')}
         onPress={() => {
+          state.words = shuffle(state.words) as Word[]
           navigation.navigate('FreePlay')
+        }}
+      />
+      <Button
+        title={t('abc')}
+        onPress={() => {
+          state.alphabet = shuffleLetters(
+            ALPHABET[state.settings?.language || 'no'].split(''),
+          ) as string[]
+          navigation.navigate('Alphabet')
         }}
       />
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 }}>
