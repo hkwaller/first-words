@@ -20,6 +20,7 @@ function Start() {
       <Header style={{ marginBottom: 40 }}>emma.</Header>
       <Button
         title={t('start')}
+        image={require('../../../assets/monkey.png')}
         onPress={() => {
           state.words = shuffle(state.words) as Word[]
           navigation.navigate('FreePlay')
@@ -27,6 +28,10 @@ function Start() {
       />
       <Button
         title={t('abc')}
+        backgroundColor="#FCEA9F"
+        image={require('../../../assets/moose.png')}
+        rotation={2}
+        invert
         onPress={() => {
           state.alphabet = shuffleLetters(
             ALPHABET[state.settings?.language || 'no'].split(''),
