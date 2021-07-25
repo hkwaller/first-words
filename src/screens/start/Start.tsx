@@ -24,7 +24,7 @@ function Start() {
           image={require('../../../assets/monkey.png')}
           onPress={() => {
             state.words = shuffle(state.words)
-            navigation.navigate('FreePlay')
+            navigation.navigate('FreePlaySetup')
           }}
         />
         <Button

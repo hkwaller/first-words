@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "first-words",
+    "name": "emma.",
     "slug": "first-words",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,7 +16,8 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "no.hkwaller.first-words"
+      "bundleIdentifier": "no.hkwaller.first-words",
+      "buildNumber": "1.0.1"
     },
     "android": {
       "adaptiveIcon": {

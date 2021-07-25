@@ -12,6 +12,7 @@ import FreePlay from 'src/screens/free-play/FreePlay'
 import { getValueFor } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
 import { View } from 'react-native'
+import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 
 const Stack = createStackNavigator()
 
@@ -52,6 +53,7 @@ function App() {
         >
           <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="FreePlay" component={FreePlay} />
+          <Stack.Screen name="FreePlaySetup" component={FreePlaySetup} />
           <Stack.Screen name="Alphabet" component={Alphabet} />
         </Stack.Navigator>
       </NavigationContainer>
