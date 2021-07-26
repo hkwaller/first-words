@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { View, Text, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import { colors } from 'src/config/constants'
 import { BodyText } from './styled'
 
@@ -8,9 +8,9 @@ type Props = {
   number: number
 }
 
-function PigWithCard({ number }: Props) {
+function PigWithSign({ number }: Props) {
   return (
-    <View style={{ justifyContent: 'flex-start' }}>
+    <View style={{ justifyContent: 'flex-start', marginLeft: -20 }}>
       <Image
         source={require('../../assets/pig.png')}
         width={60}
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PigWithCard
+export default PigWithSign

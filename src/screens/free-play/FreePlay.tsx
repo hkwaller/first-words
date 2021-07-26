@@ -21,7 +21,7 @@ function FreePlay() {
   return (
     <>
       <Animated.View style={[styles.container, backgroundStyle]}>
-        {state.words.map((word, index) => {
+        {state.currentGame.map((word, index) => {
           return (
             <Word
               key={word._id}
@@ -34,7 +34,7 @@ function FreePlay() {
             />
           )
         })}
-        {activeIndex === state.words.length && (
+        {activeIndex === state.currentGame.length && (
           <Button
             title={t('back')}
             onPress={() => {

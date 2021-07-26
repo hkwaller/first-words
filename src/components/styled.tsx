@@ -33,6 +33,18 @@ export const ButtonContainer = styled.TouchableOpacity<{ color: string; rotation
   background-color: ${props => props.color || '#aae0fc'};
   transform: ${props => `rotate(${props.rotation || 2}deg)`};
 `
+export const NavigationButton = styled.TouchableOpacity<{ color: string }>`
+  font-weight: bold;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 40px;
+  padding: 30px 60px;
+  align-self: center;
+  background-color: ${props => props.color || '#aae0fc'};
+  transform: rotate(2deg);
+`
 
 export const SmallButtonContainer = styled.TouchableOpacity`
   padding: 10px;
