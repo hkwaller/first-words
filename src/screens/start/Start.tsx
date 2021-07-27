@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -11,8 +11,11 @@ import SmallButton from 'src/components/SmallButton'
 import { shuffle, shuffleLetters } from 'src/backend/api'
 import { ALPHABET } from 'src/config/constants'
 import StartHeader from './components/StartHeader'
+import IntroModal from 'src/components/IntroModal'
+import { Languages } from 'src/backend/types'
 
 function Start() {
+  const [modalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
 
   return (
@@ -27,6 +30,7 @@ function Start() {
             navigation.navigate('FreePlaySetup')
           }}
         />
+        <Button title="modal" onPress={() => setModalVisible(!modalVisible)} />
         <Button
           title={t('abc')}
           backgroundColor="#FCEA9F"
@@ -46,6 +50,7 @@ function Start() {
           <SmallButton title="English" onPress={() => saveLanguage('en')} />
         </View>
       </SafeAreaView>
+      <IntroModal isVisible={modalVisible} setModalVisible={setModalVisible} />
     </ScrollView>
   )
 }

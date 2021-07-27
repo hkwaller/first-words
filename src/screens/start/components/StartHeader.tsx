@@ -8,9 +8,9 @@ import { BodyText, NameText } from 'src/components/styled'
 function StartHeader() {
   return (
     <View style={styles.container}>
-      <Image source={require('../../../../assets/pig.png')} />
+      <Image source={state.animal.image} />
       <BodyText style={{ marginTop: 40 }}>{t('welcome')}</BodyText>
-      <NameText>{state.settings.name}</NameText>
+      <NameText style={{ color: state.animal.color }}>{state.settings.name}</NameText>
     </View>
   )
 }

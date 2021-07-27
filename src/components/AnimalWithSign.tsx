@@ -1,17 +1,18 @@
+import { view } from '@risingstack/react-easy-state'
 import React from 'react'
 import { StyleSheet, View, Image } from 'react-native'
-import { colors } from 'src/config/constants'
+import { state } from 'src/backend/data'
 import { BodyText } from './styled'
 
 type Props = {
   number: number
 }
 
-function PigWithSign({ number }: Props) {
+function AnimalWithSign({ number }: Props) {
   return (
     <View style={{ justifyContent: 'flex-start', marginLeft: -20, maxHeight: 60 }}>
       <Image
-        source={require('../../assets/pig.png')}
+        source={state.animal.image}
         width={60}
         height={50}
         resizeMode="contain"
@@ -19,8 +20,8 @@ function PigWithSign({ number }: Props) {
       />
       <View style={styles.container}>
         <BodyText style={{ fontSize: 30 }}>{number}</BodyText>
-        <View style={[styles.hand, styles.leftHand]} />
-        <View style={[styles.hand, styles.rightHand]} />
+        <View style={[styles.hand, styles.leftHand, { backgroundColor: state.animal.color }]} />
+        <View style={[styles.hand, styles.rightHand, { backgroundColor: state.animal.color }]} />
       </View>
     </View>
   )
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
     marginTop: -5,
   },
   hand: {
-    backgroundColor: colors.pink,
     borderRadius: 10,
     width: 10,
     height: 10,
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PigWithSign
+export default view(AnimalWithSign)

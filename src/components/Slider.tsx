@@ -14,7 +14,7 @@ import Animated, {
 import { state } from 'src/backend/data'
 import { SCREEN_WIDTH } from 'src/config/constants'
 import { save } from 'src/config/helpers'
-import PigWithSign from './PigWithSign'
+import AnimalWithSign from './AnimalWithSign'
 
 type Props = {}
 
@@ -73,7 +73,7 @@ function Slider(props: Props) {
       />
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={animatedStyle}>
-          <PigWithSign number={number} />
+          <AnimalWithSign number={number} />
         </Animated.View>
       </PanGestureHandler>
     </View>

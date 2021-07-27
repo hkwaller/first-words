@@ -7,6 +7,7 @@ export const translations = {
     abc: 'Alfabet',
     welcome: 'Velkommen',
     setup_word_amount: 'Hvor mange ord?',
+    setup_categories: 'Hvilke kategorier?',
   },
   sv: {
     start: 'Ordlek',
@@ -14,6 +15,7 @@ export const translations = {
     abc: 'Alfabetet',
     welcome: 'Välkommen',
     setup_word_amount: 'Hur många ord?',
+    setup_categories: 'Vilka kategorier?',
   },
   en: {
     start: 'Word game',
@@ -21,6 +23,7 @@ export const translations = {
     abc: 'Alphabet',
     welcome: 'Welcome',
     setup_word_amount: 'How many words?',
+    setup_categories: 'Which categories?',
   },
 }
 

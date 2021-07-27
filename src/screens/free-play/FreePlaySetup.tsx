@@ -22,22 +22,25 @@ function FreePlaySetup() {
       <SafeAreaView style={styles.container}>
         <TopLine style={[styles.line, styles.topLine]} color={colors.lightBlue} />
         <BottomLine style={[styles.line, styles.bottomLine]} color={colors.lightPink} />
-        <ButtonText
-          style={{ color: colors.darkGray, textAlign: 'center', transform: [{ rotateZ: '-6deg' }] }}
-        >
-          {t('start')}
-        </ButtonText>
-        <BodyText style={{ marginTop: 40, marginBottom: 12 }}>{t('setup_word_amount')}</BodyText>
-        <View
-          style={{
-            backgroundColor: 'white',
-            paddingVertical: 10,
-            paddingHorizontal: 30,
-            borderRadius: 30,
-          }}
-        >
+        <ButtonText style={styles.buttonContainer}>{t('start')}</ButtonText>
+        <BodyText style={styles.bodyText}>{t('setup_word_amount')}</BodyText>
+        <View style={styles.sliderContainer}>
           <Slider />
         </View>
+        {/*<BodyText style={styles.bodyText}>{t('setup_categories')}</BodyText>
+         <View style={{ alignItems: 'flex-start' }}>
+          {state.categories.map(category => {
+            return (
+              <Category
+                key={category._id}
+                title={category.title[state.settings.language]}
+                isActive={    
+                  state.currentCategories.indexOf((c: Category) => c._id === category._id) > 0
+                }
+              />
+            )
+          })}
+        </View> */}
         <View style={{ flex: 1 }} />
         <NavigationButton
           color={colors.yellow}
@@ -73,6 +76,18 @@ const styles = StyleSheet.create({
     left: 20,
     bottom: 0,
   },
+  sliderContainer: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+  },
+  buttonContainer: {
+    color: colors.darkGray,
+    textAlign: 'center',
+    transform: [{ rotateZ: '-6deg' }],
+  },
+  bodyText: { marginTop: 40, marginBottom: 12 },
 })
 
 export default view(FreePlaySetup)

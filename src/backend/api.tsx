@@ -17,6 +17,20 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
+export async function getCategories() {
+  const query = '*[_type == "category"]{...}'
+  const categories = await client.fetch(query).then((categories: Category[]) => {
+    return categories.map((c: Category) => {
+      return {
+        title: c.title,
+        _id: c._id,
+      }
+    })
+  })
+
+  return categories
+}
+
 export async function getWords() {
   const query = '*[_type == "word"]{...}'
   const words = await client.fetch(query).then((words: Word[]) => {

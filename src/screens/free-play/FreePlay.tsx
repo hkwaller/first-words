@@ -8,6 +8,7 @@ import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
 import { t } from 'src/backend/lang'
 import { save } from 'src/config/helpers'
+import { s } from 'src/config/constants'
 
 function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -15,7 +16,7 @@ function FreePlay() {
 
   const backgroundStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: withTiming(getColor()),
+      backgroundColor: withTiming(s[activeIndex]),
     }
   }, [activeIndex])
 
@@ -71,6 +72,13 @@ export function getColor() {
     (85 + 10 * Math.random()) +
     '%)'
   )
+}
+
+export function getRandomColor() {
+  'worklet'
+  const colors = ['#0CECDD', '#FFF338', '#FF67E7', '#C400FF']
+
+  return colors[Math.round(Math.random() * colors.length)]
 }
 
 export default view(FreePlay)

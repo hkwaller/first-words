@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import AppLoading from 'expo-app-loading'
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
-import { getWords } from './src/backend/api'
+import { getCategories, getWords } from './src/backend/api'
 import { state } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
 import FreePlay from 'src/screens/free-play/FreePlay'
@@ -20,7 +20,10 @@ function App() {
     async function t() {
       const settings = await getValueFor('settings')
       const words = await getWords()
+      const categories = await getCategories()
+
       state.words = words
+      state.categories = categories
       state.settings = JSON.parse(settings as any)
     }
 
