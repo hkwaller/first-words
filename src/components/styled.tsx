@@ -40,7 +40,7 @@ export const NavigationButton = styled.TouchableOpacity<{ color: string }>`
   justify-content: center;
   margin-top: 20px;
   border-radius: 40px;
-  padding: 30px 60px;
+  padding: 20px 60px;
   align-self: center;
   background-color: ${props => props.color || '#aae0fc'};
   transform: rotate(2deg);

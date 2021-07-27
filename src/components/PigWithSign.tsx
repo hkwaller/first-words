@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { View, Image } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import { colors } from 'src/config/constants'
 import { BodyText } from './styled'
 
@@ -10,7 +9,7 @@ type Props = {
 
 function PigWithSign({ number }: Props) {
   return (
-    <View style={{ justifyContent: 'flex-start', marginLeft: -20 }}>
+    <View style={{ justifyContent: 'flex-start', marginLeft: -20, maxHeight: 60 }}>
       <Image
         source={require('../../assets/pig.png')}
         width={60}
@@ -19,7 +18,7 @@ function PigWithSign({ number }: Props) {
         style={{ width: 60, height: 50 }}
       />
       <View style={styles.container}>
-        <BodyText>{number}</BodyText>
+        <BodyText style={{ fontSize: 30 }}>{number}</BodyText>
         <View style={[styles.hand, styles.leftHand]} />
         <View style={[styles.hand, styles.rightHand]} />
       </View>

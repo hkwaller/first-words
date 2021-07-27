@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageSourcePropType } from 'react-native'
 import { Image, StyleSheet, View } from 'react-native'
+import { colors } from 'src/config/constants'
 import { ButtonContainer, ButtonText } from './styled'
 import BottomLine from './svg/BottomLine'
 import TopLine from './svg/TopLine'
@@ -22,8 +23,8 @@ function Button({
   image,
   invert = false,
 }: Props) {
-  const topColor = invert ? '#A0C1FF' : '#F3AECE'
-  const bottomColor = invert ? '#F3AECE' : '#A0C1FF'
+  const topColor = invert ? colors.lightBlue : colors.lightPink
+  const bottomColor = invert ? colors.lightPink : colors.lightBlue
 
   return (
     <ButtonContainer
@@ -79,4 +80,5 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 })
+
 export default Button

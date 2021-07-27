@@ -7,6 +7,7 @@ import Word from 'src/components/Word'
 import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
 import { t } from 'src/backend/lang'
+import { save } from 'src/config/helpers'
 
 function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -39,6 +40,8 @@ function FreePlay() {
             title={t('back')}
             onPress={() => {
               navigation.goBack()
+              state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
+              save('settings', JSON.stringify(state.settings))
             }}
           />
         )}

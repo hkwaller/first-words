@@ -11,7 +11,6 @@ import Start from 'src/screens/start/Start'
 import FreePlay from 'src/screens/free-play/FreePlay'
 import { getValueFor } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
-import { View } from 'react-native'
 import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 
 const Stack = createStackNavigator()

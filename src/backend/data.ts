@@ -1,4 +1,5 @@
-import { store as easyStore } from '@risingstack/react-easy-state'
+import { autoEffect, store as easyStore } from '@risingstack/react-easy-state'
+import { save } from 'src/config/helpers'
 
 type State = {
   words: Word[]
@@ -8,6 +9,7 @@ type State = {
     language: 'no' | 'sv' | 'en' | undefined
     name: string
     preferredAmountWords: number
+    wordsPlayed: number
   }
 }
 
@@ -19,5 +21,6 @@ export const state = easyStore<State>({
     language: undefined,
     name: 'Amalie',
     preferredAmountWords: 10,
+    wordsPlayed: 0,
   },
 })

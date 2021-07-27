@@ -4,7 +4,7 @@ import Svg, { Path } from 'react-native-svg'
 
 type Props = {
   color: string
-  style: StyleProp<ViewStyle>
+  style?: StyleProp<ViewStyle>
 }
 
 function TopLine({ color, style }: Props) {
