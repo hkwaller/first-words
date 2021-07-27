@@ -31,7 +31,7 @@ function App() {
   }, [])
 
   let [fontsLoaded] = useFonts({
-    AvocadoCreamy: require('./assets/fonts/AvocadoCreamy.otf'),
+    MyHappyEndingRegular: require('./assets/fonts/MyHappyEndingRegular.ttf'),
   })
 
   if (!fontsLoaded || !state.settings) return <AppLoading />

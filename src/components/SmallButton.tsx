@@ -1,35 +1,60 @@
-import { view } from '@risingstack/react-easy-state'
 import React from 'react'
-import { state } from 'src/backend/data'
+import { ImageSourcePropType } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
+import { colors } from 'src/config/constants'
 import { ButtonText, SmallButtonContainer } from './styled'
+import BottomLine from './svg/BottomLine'
+import TopLine from './svg/TopLine'
 
 type Props = {
   onPress: () => void
   title: string
+  backgroundColor?: string
+  rotation?: number
 }
 
-function SmallButton({ onPress, title }: Props) {
+function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = -2 }: Props) {
   return (
     <SmallButtonContainer
       onPress={onPress}
+      color={backgroundColor}
+      rotation={rotation}
       style={{
-        backgroundColor: isActiveLanguage(title) ? 'palevioletred' : 'white',
+        marginBottom: 20,
+        shadowColor: 'gray',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 3,
       }}
     >
-      <ButtonText
-        style={{ fontSize: 16, color: isActiveLanguage(title) ? 'white' : 'palevioletred' }}
-      >
-        {title}
-      </ButtonText>
+      <View style={styles.container}>
+        <ButtonText style={{ marginHorizontal: 15, fontSize: 20 }}>{title}</ButtonText>
+      </View>
     </SmallButtonContainer>
   )
 }
 
-function isActiveLanguage(lang: string) {
-  if (state.settings.language === 'no' && lang === 'Norsk') return true
-  else if (state.settings.language === 'sv' && lang === 'Svenska') return true
-  else if (state.settings.language === 'en' && lang === 'English') return true
-  return false
-}
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  line: {
+    position: 'absolute',
+  },
+  topLine: {
+    right: 20,
+    top: 0,
+  },
+  bottomLine: {
+    left: 20,
+    bottom: 0,
+  },
+})
 
-export default view(SmallButton)
+export default SmallButton

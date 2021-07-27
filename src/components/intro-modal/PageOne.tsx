@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { state } from 'src/backend/data'
 import { colors, SCREEN_WIDTH } from 'src/config/constants'
-import Button from '../Button'
-import { Header } from '../styled'
+import SmallButton from '../SmallButton'
+import { BodyText, Header, NavigationButton } from '../styled'
 
 function PageOne({ navigate }: { navigate: () => void }) {
   const [name, setName] = useState('')
@@ -25,13 +25,17 @@ function PageOne({ navigate }: { navigate: () => void }) {
         }}
       />
       <View style={{ flex: 1 }} />
-      <Button
-        title="Videre"
+      <NavigationButton
+        color={colors.lightBlue}
         onPress={() => {
+          if (name.length === 0) return
+
           navigate()
           state.settings.name = name
         }}
-      />
+      >
+        <BodyText>Videre</BodyText>
+      </NavigationButton>
     </View>
   )
 }
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
   pageContainer: {
     width: SCREEN_WIDTH - 40,
     padding: 20,
+    alignItems: 'center',
   },
   input: {
     marginVertical: 20,
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.lightBlue,
     borderBottomWidth: 4,
     fontSize: 24,
+    width: '100%',
   },
 })
 

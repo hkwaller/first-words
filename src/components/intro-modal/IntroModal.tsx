@@ -26,11 +26,7 @@ function IntroModal({ isVisible, setModalVisible }: Props) {
   }, [activePage])
 
   return (
-    <Modal
-      isVisible={isVisible}
-      onBackdropPress={() => setModalVisible(false)}
-      onModalHide={() => setActivePage(0)}
-    >
+    <Modal isVisible={isVisible} onModalHide={() => setActivePage(0)}>
       <View style={styles.scrollViewWrapper}>
         <ScrollView
           horizontal

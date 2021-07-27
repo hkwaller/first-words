@@ -30,7 +30,6 @@ function Start() {
             navigation.navigate('FreePlaySetup')
           }}
         />
-        <Button title="modal" onPress={() => setModalVisible(!modalVisible)} />
         <Button
           title={t('abc')}
           backgroundColor="#FCEA9F"
@@ -44,6 +43,7 @@ function Start() {
             navigation.navigate('Alphabet')
           }}
         />
+        <SmallButton title="modal" onPress={() => setModalVisible(!modalVisible)} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 }}>
           <SmallButton title="Norsk" onPress={() => saveLanguage('no')} />
           <SmallButton title="Svenska" onPress={() => saveLanguage('sv')} />

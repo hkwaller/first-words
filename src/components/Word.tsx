@@ -4,9 +4,10 @@ import { state } from 'src/backend/data'
 import { CARD_WIDTH } from 'src/config/constants'
 import { urlFor } from '../backend/api'
 import CardContainer from './CardContainer'
+import { Word as WordType } from 'src/backend/types'
 
 type Props = {
-  word: Word
+  word: WordType
   index: number
   isActive: boolean
   updateIndex: () => void
@@ -15,7 +16,7 @@ type Props = {
 function Word({ word, index, isActive, updateIndex }: Props) {
   return (
     <CardContainer index={index} updateIndex={updateIndex} isActive={isActive}>
-      <Text style={{ fontFamily: 'AvocadoCreamy', fontSize: 50, marginBottom: 20 }}>
+      <Text style={{ fontFamily: 'MyHappyEndingRegular', fontSize: 60, marginBottom: 20 }}>
         {word.word[state.settings?.language || 'no']}
       </Text>
       <Image

@@ -1,9 +1,8 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { animals, SCREEN_WIDTH } from 'src/config/constants'
+import { animals, colors, SCREEN_WIDTH } from 'src/config/constants'
 import AnimalButton from '../AnimalButton'
-import Button from '../Button'
-import { BodyText } from '../styled'
+import { BodyText, NavigationButton } from '../styled'
 
 function PageTwo({ close }: { close: () => void }) {
   return (
@@ -14,7 +13,10 @@ function PageTwo({ close }: { close: () => void }) {
           return <AnimalButton key={animal.name} {...{ animal }} />
         })}
       </View>
-      <Button title="Begynn!" onPress={close} />
+      <View style={{ flex: 1 }} />
+      <NavigationButton onPress={close} color={colors.yellow}>
+        <BodyText>Begynn</BodyText>
+      </NavigationButton>
     </View>
   )
 }
@@ -23,10 +25,12 @@ const styles = StyleSheet.create({
   pageContainer: {
     width: SCREEN_WIDTH - 40,
     padding: 20,
+    alignItems: 'center',
   },
   animalContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 })
 

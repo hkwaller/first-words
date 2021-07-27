@@ -26,6 +26,7 @@ export const animals: Animal[] = [
   { name: 'fox', color: '#ec6524', image: require('../../assets/animals/fox.png') },
   { name: 'lion', color: '#ef9748', image: require('../../assets/animals/lion.png') },
   { name: 'rabbit', color: '#c1bca6', image: require('../../assets/animals/rabbit.png') },
+  { name: 'giraffe', color: '#ef9748', image: require('../../assets/animals/giraffe.png') },
 ]
 
 export const s = [
