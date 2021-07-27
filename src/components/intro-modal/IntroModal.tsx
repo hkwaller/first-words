@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useRef } from 'react'
-import { StyleSheet } from 'react-native'
-import { View, ScrollView } from 'react-native'
+import React, { useState, useRef, useEffect } from 'react'
+import { View, ScrollView, StyleSheet } from 'react-native'
+import { view } from '@risingstack/react-easy-state'
 import Modal from 'react-native-modal'
+import { state } from 'src/backend/data'
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'src/config/constants'
+import { save } from 'src/config/helpers'
 import PageOne from './PageOne'
 import PageTwo from './PageTwo'
 
@@ -26,7 +26,14 @@ function IntroModal({ isVisible, setModalVisible }: Props) {
   }, [activePage])
 
   return (
-    <Modal isVisible={isVisible} onModalHide={() => setActivePage(0)}>
+    <Modal
+      isVisible={isVisible}
+      avoidKeyboard
+      onModalHide={() => {
+        setActivePage(0)
+        save('settings', JSON.stringify(state.settings))
+      }}
+    >
       <View style={styles.scrollViewWrapper}>
         <ScrollView
           horizontal
@@ -53,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default IntroModal
+export default view(IntroModal)

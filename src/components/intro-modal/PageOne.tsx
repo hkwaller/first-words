@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { state } from 'src/backend/data'
 import { colors, SCREEN_WIDTH } from 'src/config/constants'
-import SmallButton from '../SmallButton'
+import LanguageSelector from 'src/screens/start/components/LanguageSelector'
 import { BodyText, Header, NavigationButton } from '../styled'
 
 function PageOne({ navigate }: { navigate: () => void }) {
@@ -11,11 +11,11 @@ function PageOne({ navigate }: { navigate: () => void }) {
   return (
     <View style={styles.pageContainer}>
       <Header>Velkommen</Header>
+      <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
         Velkommen til Emma, appen som lærer deg ord og bokstaver i et rasende tempo.
       </Text>
       <Text>Før vi starter så må vi bare etablere et par ting. </Text>
-
       <TextInput
         placeholder="Hva heter du?"
         style={styles.input}

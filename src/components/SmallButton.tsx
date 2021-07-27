@@ -1,10 +1,6 @@
 import React from 'react'
-import { ImageSourcePropType } from 'react-native'
-import { Image, StyleSheet, View } from 'react-native'
-import { colors } from 'src/config/constants'
+import { StyleSheet, View } from 'react-native'
 import { ButtonText, SmallButtonContainer } from './styled'
-import BottomLine from './svg/BottomLine'
-import TopLine from './svg/TopLine'
 
 type Props = {
   onPress: () => void
@@ -13,7 +9,7 @@ type Props = {
   rotation?: number
 }
 
-function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = -2 }: Props) {
+function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2 }: Props) {
   return (
     <SmallButtonContainer
       onPress={onPress}

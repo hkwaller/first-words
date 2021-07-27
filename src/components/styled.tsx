@@ -55,5 +55,5 @@ export const SmallButtonContainer = styled.TouchableOpacity<{ color: string; rot
   margin-top: 20px;
   border-radius: 30px;
   background-color: ${props => props.color || '#aae0fc'};
-  transform: ${props => `rotate(${props.rotation || 2}deg)`};
+  transform: ${props => `rotate(${props.rotation || -2}deg)`};
 `

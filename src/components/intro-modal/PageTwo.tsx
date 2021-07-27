@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    marginHorizontal: -20,
   },
 })
 
