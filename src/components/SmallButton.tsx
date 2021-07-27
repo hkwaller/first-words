@@ -1,3 +1,4 @@
+import { view } from '@risingstack/react-easy-state'
 import React from 'react'
 import { state } from 'src/backend/data'
 import { ButtonText, SmallButtonContainer } from './styled'
@@ -25,10 +26,10 @@ function SmallButton({ onPress, title }: Props) {
 }
 
 function isActiveLanguage(lang: string) {
-  if (state.settings.language === 'no' && lang === 'Norska') return true
-  else if (state.settings.language === 'en' && lang === 'Svenska') return true
-  else if (state.settings.language === 'sv' && lang === 'English') return true
+  if (state.settings.language === 'no' && lang === 'Norsk') return true
+  else if (state.settings.language === 'sv' && lang === 'Svenska') return true
+  else if (state.settings.language === 'en' && lang === 'English') return true
   return false
 }
 
-export default SmallButton
+export default view(SmallButton)

@@ -11,7 +11,7 @@ import SmallButton from 'src/components/SmallButton'
 import { shuffle, shuffleLetters } from 'src/backend/api'
 import { ALPHABET } from 'src/config/constants'
 import StartHeader from './components/StartHeader'
-import IntroModal from 'src/components/IntroModal'
+import IntroModal from 'src/components/intro-modal/IntroModal'
 import { Languages } from 'src/backend/types'
 
 function Start() {
