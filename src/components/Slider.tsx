@@ -18,18 +18,15 @@ import AnimalWithSign from './AnimalWithSign'
 
 type Props = {}
 
-function Slider(props: Props) {
+function Slider() {
   const width = SCREEN_WIDTH - 100
   const step = width / state.words.length
-  const [number, setNumber] = useState(state.settings.preferredAmountWords || 10)
+  const [number, setNumber] = useState(state.settings.preferredAmountWords)
   const x = useSharedValue(0)
   const wordsCount = useSharedValue(state.words.length)
 
   useEffect(() => {
-    x.value = withDelay(
-      200,
-      withSpring(Math.min(state.words.length * step, (width / step) * number)),
-    )
+    x.value = withDelay(200, withSpring(number * step))
   }, [])
 
   function updateState(currentNumber: number) {
@@ -66,7 +63,7 @@ function Slider(props: Props) {
           backgroundColor: 'black',
           height: 5,
           position: 'absolute',
-          width: SCREEN_WIDTH - 100,
+          width: width,
           top: 30,
           borderRadius: 20,
         }}

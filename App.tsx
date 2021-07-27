@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { view } from '@risingstack/react-easy-state'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -16,6 +16,7 @@ import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 const Stack = createStackNavigator()
 
 function App() {
+  const [everythingLoaded, setEverythingLoaded] = useState(false)
   useEffect(() => {
     async function t() {
       const settings = await getValueFor('settings')
@@ -25,6 +26,8 @@ function App() {
       state.words = words
       state.categories = categories
       state.settings = JSON.parse(settings as any)
+
+      setEverythingLoaded(true)
     }
 
     t()
@@ -34,7 +37,7 @@ function App() {
     MyHappyEndingRegular: require('./assets/fonts/MyHappyEndingRegular.ttf'),
   })
 
-  if (!fontsLoaded || !state.settings) return <AppLoading />
+  if (!fontsLoaded || !everythingLoaded) return <AppLoading />
 
   return (
     <>
