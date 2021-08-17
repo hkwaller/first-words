@@ -9,7 +9,7 @@ import { getCategories, getWords } from './src/backend/api'
 import { state } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
 import FreePlay from 'src/screens/free-play/FreePlay'
-import { getValueFor } from 'src/config/helpers'
+import { getValueFor, save } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
 import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 
@@ -27,6 +27,8 @@ function App() {
       state.categories = categories
       state.settings = JSON.parse(settings as any)
 
+      // state.settings.name = ''
+      // save('settings', JSON.stringify(state.settings))
       setEverythingLoaded(true)
     }
 

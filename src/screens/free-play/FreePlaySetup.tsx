@@ -1,9 +1,9 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { view } from '@risingstack/react-easy-state'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { shuffle } from 'src/backend/api'
+import { getUnusedWords, shuffle } from 'src/backend/api'
 import { state } from 'src/backend/data'
 import Slider from 'src/components/Slider'
 import { BodyText, ButtonText, NavigationButton } from 'src/components/styled'
@@ -11,12 +11,12 @@ import { colors } from 'src/config/constants'
 import TopLine from 'src/components/svg/TopLine'
 import BottomLine from 'src/components/svg/BottomLine'
 import { t } from 'src/backend/lang'
-
-type Props = {}
+import Category from 'src/components/Category'
+import Checkbox from 'src/components/Checkbox'
 
 function FreePlaySetup() {
+  const [showNewWords, setShowNewWords] = useState(false)
   const navigation = useNavigation()
-
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -27,26 +27,42 @@ function FreePlaySetup() {
         <View style={styles.sliderContainer}>
           <Slider />
         </View>
-        {/*<BodyText style={styles.bodyText}>{t('setup_categories')}</BodyText>
-         <View style={{ alignItems: 'flex-start' }}>
+        <Checkbox
+          title={t('only_new_words')}
+          active={showNewWords}
+          onToggle={() => setShowNewWords(!showNewWords)}
+        />
+        <BodyText style={styles.bodyText}>{t('setup_categories')}</BodyText>
+        <View style={{ alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: 'row' }}>
           {state.categories.map(category => {
             return (
               <Category
                 key={category._id}
-                title={category.title[state.settings.language]}
-                isActive={    
-                  state.currentCategories.indexOf((c: Category) => c._id === category._id) > 0
-                }
+                id={category._id}
+                title={category.title[state.settings.language || 'no']}
               />
             )
           })}
-        </View> */}
+        </View>
         <View style={{ flex: 1 }} />
         <NavigationButton
           color={colors.yellow}
           onPress={() => {
-            const shuffledWords = shuffle(state.words)
-            state.currentGame = shuffledWords.slice(0, state.settings.preferredAmountWords)
+            let words = state.words
+            if (showNewWords) {
+              words = getUnusedWords(state.words, state.settings.wordsLearnt)
+            }
+            const shuffledWords = shuffle(words)
+
+            state.currentGame =
+              state.currentCategories.length === 0
+                ? shuffledWords.slice(0, state.settings.preferredAmountWords)
+                : shuffledWords
+                    .filter(word => {
+                      return state.currentCategories.indexOf(word.category._id) > -1
+                    })
+                    .slice(0, state.settings.preferredAmountWords)
+
             navigation.navigate('FreePlay')
           }}
         >
@@ -81,6 +97,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
     borderRadius: 30,
+    marginBottom: 10,
   },
   buttonContainer: {
     color: colors.darkGray,

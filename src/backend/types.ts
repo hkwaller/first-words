@@ -4,11 +4,12 @@ export type Word = {
   _id: string
   word: any
   image: ImageData
+  category: Category
 }
 
 export type Category = {
   _id: string
-  title: string
+  title: any
 }
 
 export type Languages = 'no' | 'sv' | 'en'

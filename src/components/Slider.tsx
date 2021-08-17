@@ -21,7 +21,7 @@ type Props = {}
 function Slider() {
   const width = SCREEN_WIDTH - 100
   const step = width / state.words.length
-  const [number, setNumber] = useState(state.settings.preferredAmountWords)
+  const [number, setNumber] = useState(state.settings.preferredAmountWords || 10)
   const x = useSharedValue(0)
   const wordsCount = useSharedValue(state.words.length)
 

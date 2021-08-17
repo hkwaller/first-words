@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
+import { uniq } from 'lodash'
 import { view } from '@risingstack/react-easy-state'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
@@ -24,6 +25,8 @@ function FreePlay() {
     <>
       <Animated.View style={[styles.container, backgroundStyle]}>
         {state.currentGame.map((word, index) => {
+          console.log('🚀 ~ file: FreePlay.tsx ~ line 40 ~ {state.currentGame.map ~ word', word)
+
           return (
             <Word
               key={word._id}
@@ -38,10 +41,16 @@ function FreePlay() {
         })}
         {activeIndex === state.currentGame.length && (
           <Button
+            key="0"
             title={t('back')}
             onPress={() => {
               navigation.goBack()
               state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
+              state.settings.wordsLearnt = uniq([
+                ...state.settings.wordsLearnt,
+                ...state.currentGame.map(w => w._id),
+              ])
+
               save('settings', JSON.stringify(state.settings))
             }}
           />
