@@ -13,9 +13,11 @@ type State = {
     name?: string
     animal?: Animal
     preferredAmountWords: number
+    preferredAmountLetters: number
     wordsPlayed: number
     wordsLearnt: string[]
     lastWordCount: number
+    hasPurchased?: boolean
   }
 }
 
@@ -29,6 +31,7 @@ export const state = easyStore<State>({
     language: 'no',
     name: '',
     preferredAmountWords: 10,
+    preferredAmountLetters: 10,
     wordsPlayed: 0,
     wordsLearnt: [],
     lastWordCount: 0,

@@ -6,20 +6,22 @@ import LanguageSelector from 'src/screens/start/components/LanguageSelector'
 import { BodyText, Header, NavigationButton } from '../styled'
 
 function PageOne({ navigate }: { navigate: () => void }) {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(state.settings.name || '')
 
   return (
     <View style={styles.pageContainer}>
-      <Header>Velkommen</Header>
+      {state.settings.name?.length === 0 && <Header>Velkommen</Header>}
       <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
-        Velkommen til Emma, appen som lærer ditt barn ord og bokstaver i et rasende tempo.
+        Velkommen til <Text style={{ fontWeight: '800' }}>Astrid</Text>, appen som lærer ditt barn
+        ord og bokstaver i et rasende tempo.
       </Text>
       <Text>Før vi starter så må vi bare etablere et par ting. </Text>
       <TextInput
         placeholder="Hva heter barnet?"
         style={styles.input}
         placeholderTextColor="gray"
+        value={name}
         onChangeText={text => {
           setName(text)
         }}

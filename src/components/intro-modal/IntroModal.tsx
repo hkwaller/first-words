@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     padding: 20,
     minHeight: SCREEN_HEIGHT / 2,
     marginTop: 'auto',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
 })
 

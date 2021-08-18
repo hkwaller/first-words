@@ -16,6 +16,7 @@ function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2
       color={backgroundColor}
       rotation={rotation}
       style={{
+        alignSelf: 'center',
         marginBottom: 20,
         shadowColor: 'gray',
         shadowOffset: {
@@ -28,7 +29,7 @@ function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2
       }}
     >
       <View style={styles.container}>
-        <ButtonText style={{ marginHorizontal: 15, fontSize: 20 }}>{title}</ButtonText>
+        <ButtonText style={{ marginHorizontal: 15, fontSize: 30 }}>{title}</ButtonText>
       </View>
     </SmallButtonContainer>
   )

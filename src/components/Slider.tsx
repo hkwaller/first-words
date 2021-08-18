@@ -16,21 +16,31 @@ import { SCREEN_WIDTH } from 'src/config/constants'
 import { save } from 'src/config/helpers'
 import AnimalWithSign from './AnimalWithSign'
 
-type Props = {}
+type Props = {
+  type: 'words' | 'letters'
+}
 
-function Slider() {
+function Slider({ type }: Props) {
+  const data = type === 'letters' ? state.alphabet : state.words
+  const preferredAmount =
+    state.settings[type === 'letters' ? 'preferredAmountLetters' : 'preferredAmountWords']
+
   const width = SCREEN_WIDTH - 100
-  const step = width / state.words.length
-  const [number, setNumber] = useState(state.settings.preferredAmountWords || 10)
+  const step = width / data.length
+  const [number, setNumber] = useState(preferredAmount || 10)
   const x = useSharedValue(0)
-  const wordsCount = useSharedValue(state.words.length)
+  const wordsCount = useSharedValue(data.length)
 
   useEffect(() => {
     x.value = withDelay(200, withSpring(number * step))
   }, [])
 
   function updateState(currentNumber: number) {
-    state.settings.preferredAmountWords = currentNumber
+    if (type === 'words') {
+      state.settings.preferredAmountWords = currentNumber
+    } else {
+      state.settings.preferredAmountLetters = currentNumber
+    }
     save('settings', JSON.stringify(state.settings))
   }
 
