@@ -13,11 +13,11 @@ function PageOne({ navigate }: { navigate: () => void }) {
       <Header>Velkommen</Header>
       <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
-        Velkommen til Emma, appen som lærer deg ord og bokstaver i et rasende tempo.
+        Velkommen til Emma, appen som lærer ditt barn ord og bokstaver i et rasende tempo.
       </Text>
       <Text>Før vi starter så må vi bare etablere et par ting. </Text>
       <TextInput
-        placeholder="Hva heter du?"
+        placeholder="Hva heter barnet?"
         style={styles.input}
         placeholderTextColor="gray"
         onChangeText={text => {

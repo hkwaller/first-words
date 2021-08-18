@@ -42,7 +42,11 @@ function IntroModal({ isVisible, setModalVisible }: Props) {
           ref={scrollViewRef}
         >
           <PageOne navigate={() => setActivePage(1)} />
-          <PageTwo close={() => setModalVisible(false)} />
+          <PageTwo
+            close={() => {
+              setModalVisible(false)
+            }}
+          />
         </ScrollView>
       </View>
     </Modal>

@@ -71,7 +71,6 @@ export function getUnusedWords(array: WordType[], wordsLearnt: string[]) {
   const filteredWords = array.filter(word => {
     if (wordsLearnt.indexOf(word._id) === -1) return word
   })
-  console.log('🚀 ~ file: api.tsx ~ line 82 ~ getUnusedWords ~ filteredWords', filteredWords)
 
   return filteredWords
 }

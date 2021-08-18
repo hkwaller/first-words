@@ -27,8 +27,10 @@ function App() {
       state.categories = categories
       state.settings = JSON.parse(settings as any)
 
+      state.settings.lastWordCount = words.length
+
       // state.settings.name = ''
-      // save('settings', JSON.stringify(state.settings))
+      save('settings', JSON.stringify(state.settings))
       setEverythingLoaded(true)
     }
 

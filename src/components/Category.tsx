@@ -16,9 +16,7 @@ function Category({ title, id }: Props) {
     <TouchableOpacity
       onPress={() => {
         if (isActive) {
-          const indexToRemove = state.currentCategories.findIndex(i => i === id)
-          console.log('🚀 ~ file: Category.tsx ~ line 20 ~ Category ~ indexToRemove', indexToRemove)
-          state.currentCategories.splice(indexToRemove, 1)
+          state.currentCategories = state.currentCategories.filter(i => i !== id)
           return
         } else {
           state.currentCategories = [...state.currentCategories, id]

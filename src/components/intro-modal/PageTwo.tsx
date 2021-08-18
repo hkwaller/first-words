@@ -15,7 +15,7 @@ function PageTwo({ close }: { close: () => void }) {
       </View>
       <View style={{ flex: 1 }} />
       <NavigationButton onPress={close} color={colors.yellow}>
-        <BodyText>Begynn</BodyText>
+        <BodyText>Start</BodyText>
       </NavigationButton>
     </View>
   )

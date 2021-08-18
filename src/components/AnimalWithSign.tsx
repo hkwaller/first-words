@@ -9,10 +9,12 @@ type Props = {
 }
 
 function AnimalWithSign({ number }: Props) {
+  if (!state.settings.animal) return null
+
   return (
     <View style={{ justifyContent: 'flex-start', marginLeft: -20, maxHeight: 60 }}>
       <Image
-        source={state.animal.image}
+        source={state.settings.animal.image}
         width={60}
         height={50}
         resizeMode="contain"
@@ -20,8 +22,12 @@ function AnimalWithSign({ number }: Props) {
       />
       <View style={styles.container}>
         <BodyText style={{ fontSize: 30 }}>{number}</BodyText>
-        <View style={[styles.hand, styles.leftHand, { backgroundColor: state.animal.color }]} />
-        <View style={[styles.hand, styles.rightHand, { backgroundColor: state.animal.color }]} />
+        <View
+          style={[styles.hand, styles.leftHand, { backgroundColor: state.settings.animal.color }]}
+        />
+        <View
+          style={[styles.hand, styles.rightHand, { backgroundColor: state.settings.animal.color }]}
+        />
       </View>
     </View>
   )

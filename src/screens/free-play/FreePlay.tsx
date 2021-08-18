@@ -15,18 +15,16 @@ function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
   const navigation = useNavigation()
 
-  const backgroundStyle = useAnimatedStyle(() => {
-    return {
-      backgroundColor: withTiming(s[activeIndex]),
-    }
-  }, [activeIndex])
+  // const backgroundStyle = useAnimatedStyle(() => {
+  //   return {
+  //     backgroundColor: withTiming(s[activeIndex]),
+  //   }
+  // }, [activeIndex])
 
   return (
     <>
-      <Animated.View style={[styles.container, backgroundStyle]}>
+      <Animated.View style={[styles.container]}>
         {state.currentGame.map((word, index) => {
-          console.log('🚀 ~ file: FreePlay.tsx ~ line 40 ~ {state.currentGame.map ~ word', word)
-
           return (
             <Word
               key={word._id}
@@ -44,14 +42,14 @@ function FreePlay() {
             key="0"
             title={t('back')}
             onPress={() => {
-              navigation.goBack()
               state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
               state.settings.wordsLearnt = uniq([
-                ...state.settings.wordsLearnt,
+                ...(state.settings.wordsLearnt || []),
                 ...state.currentGame.map(w => w._id),
               ])
 
               save('settings', JSON.stringify(state.settings))
+              navigation.goBack()
             }}
           />
         )}

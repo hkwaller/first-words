@@ -8,13 +8,14 @@ type State = {
   currentGame: Word[]
   categories: Category[]
   currentCategories: string[]
-  animal: Animal
   settings: {
     language: 'no' | 'sv' | 'en'
-    name: string
+    name?: string
+    animal?: Animal
     preferredAmountWords: number
     wordsPlayed: number
     wordsLearnt: string[]
+    lastWordCount: number
   }
 }
 
@@ -24,12 +25,12 @@ export const state = easyStore<State>({
   currentGame: [],
   categories: [],
   currentCategories: [],
-  animal: animals[0],
   settings: {
     language: 'no',
-    name: 'Amalie',
+    name: '',
     preferredAmountWords: 10,
     wordsPlayed: 0,
-    wordsLearnt: ['b6b3a8d4-3ac4-4c91-9eea-99d3a407b59a'],
+    wordsLearnt: [],
+    lastWordCount: 0,
   },
 })

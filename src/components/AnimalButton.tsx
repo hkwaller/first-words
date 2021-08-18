@@ -12,16 +12,16 @@ type Props = {
 function AnimalButton({ animal }: Props) {
   return (
     <View style={{ margin: 20, marginBottom: 0, padding: 10 }}>
-      {state.animal.name === animal.name && (
+      {state.settings.animal?.name === animal.name && (
         <View
           style={{
             ...StyleSheet.absoluteFillObject,
-            backgroundColor: state.animal.color,
+            backgroundColor: state.settings.animal.color,
             opacity: 0.4,
           }}
         />
       )}
-      <TouchableOpacity onPress={() => (state.animal = animal)}>
+      <TouchableOpacity onPress={() => (state.settings.animal = animal)}>
         <Image
           source={animal.image}
           width={50}

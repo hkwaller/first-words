@@ -48,13 +48,17 @@ function Button({
       <View style={styles.container}>
         {invert ? (
           <>
-            {image && <Image source={image} />}
-            <ButtonText style={{ marginHorizontal: 15 }}>{title}</ButtonText>
+            {image && <Image resizeMode="contain" source={image} style={{ flex: 1 }} />}
+            <ButtonText style={{ marginHorizontal: 15, flex: 2, textAlign: 'center' }}>
+              {title}
+            </ButtonText>
           </>
         ) : (
           <>
-            <ButtonText style={{ marginHorizontal: 15 }}>{title}</ButtonText>
-            {image && <Image source={image} />}
+            <ButtonText style={{ marginHorizontal: 15, flex: 2, textAlign: 'center' }}>
+              {title}
+            </ButtonText>
+            {image && <Image resizeMode="contain" source={image} style={{ flex: 1 }} />}
           </>
         )}
       </View>
@@ -67,6 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+    paddingHorizontal: 30,
   },
   line: {
     position: 'absolute',
