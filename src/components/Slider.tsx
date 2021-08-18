@@ -14,11 +14,11 @@ import Animated, {
 import { state } from 'src/backend/data'
 import { SCREEN_WIDTH } from 'src/config/constants'
 import { save } from 'src/config/helpers'
-import PigWithSign from './PigWithSign'
+import AnimalWithSign from './AnimalWithSign'
 
 type Props = {}
 
-function Slider(props: Props) {
+function Slider() {
   const width = SCREEN_WIDTH - 100
   const step = width / state.words.length
   const [number, setNumber] = useState(state.settings.preferredAmountWords || 10)
@@ -26,10 +26,7 @@ function Slider(props: Props) {
   const wordsCount = useSharedValue(state.words.length)
 
   useEffect(() => {
-    x.value = withDelay(
-      200,
-      withSpring(Math.min(state.words.length * step, (width / step) * number)),
-    )
+    x.value = withDelay(200, withSpring(number * step))
   }, [])
 
   function updateState(currentNumber: number) {
@@ -66,14 +63,14 @@ function Slider(props: Props) {
           backgroundColor: 'black',
           height: 5,
           position: 'absolute',
-          width: SCREEN_WIDTH - 100,
+          width: width,
           top: 30,
           borderRadius: 20,
         }}
       />
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={animatedStyle}>
-          <PigWithSign number={number} />
+          <AnimalWithSign number={number} />
         </Animated.View>
       </PanGestureHandler>
     </View>

@@ -19,7 +19,7 @@ export default {
       },
     },
     {
-      name: 'wordcategory',
+      name: 'category',
       title: 'Category',
       type: 'reference',
       to: [{ type: 'category' }],
@@ -29,7 +29,7 @@ export default {
     select: {
       title: `word.${baseLanguage.id}`,
       media: 'image',
-      category: 'wordcategory',
+      category: 'category',
     },
   },
 }

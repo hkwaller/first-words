@@ -1,37 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { view } from '@risingstack/react-easy-state'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import AppLoading from 'expo-app-loading'
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
-import { getWords } from './src/backend/api'
+import { getCategories, getWords } from './src/backend/api'
 import { state } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
 import FreePlay from 'src/screens/free-play/FreePlay'
-import { getValueFor } from 'src/config/helpers'
+import { getValueFor, save } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
 import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 
 const Stack = createStackNavigator()
 
 function App() {
+  const [everythingLoaded, setEverythingLoaded] = useState(false)
   useEffect(() => {
     async function t() {
       const settings = await getValueFor('settings')
       const words = await getWords()
+      const categories = await getCategories()
+
       state.words = words
+      state.categories = categories
       state.settings = JSON.parse(settings as any)
+
+      state.settings.lastWordCount = words.length
+
+      // state.settings.name = ''
+      save('settings', JSON.stringify(state.settings))
+      setEverythingLoaded(true)
     }
 
     t()
   }, [])
 
   let [fontsLoaded] = useFonts({
-    AvocadoCreamy: require('./assets/fonts/AvocadoCreamy.otf'),
+    MyHappyEndingRegular: require('./assets/fonts/MyHappyEndingRegular.ttf'),
   })
 
-  if (!fontsLoaded || !state.settings) return <AppLoading />
+  if (!fontsLoaded || !everythingLoaded) return <AppLoading />
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { token } from '../../token'
 import imageUrlBuilder from '@sanity/image-url'
+import { Category as CategoryType, Word as WordType } from './types'
 
 const sanityClient = require('@sanity/client')
 
@@ -17,24 +18,30 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
-export async function getWords() {
-  const query = '*[_type == "word"]{...}'
-  const words = await client.fetch(query).then((words: Word[]) => {
-    return words.map((w: Word) => {
+export async function getCategories() {
+  const query = '*[_type == "category"]{...}'
+  const categories = await client.fetch(query).then((categories: CategoryType[]) => {
+    return categories.map((c: CategoryType) => {
       return {
-        word: w.word,
-        _id: w._id,
-        image: w.image,
+        title: c.title,
+        _id: c._id,
       }
     })
   })
 
-  const shuffledWords = shuffle(words)
+  return categories
+}
+
+export async function getWords() {
+  const query = '*[_type == "word"]{_id, word, image, category->{_id}}'
+  const words = await client.fetch(query).then((words: WordType[]) => words)
+  const fixWords = words.filter((w: WordType) => !!w.category)
+  const shuffledWords = shuffle(fixWords)
 
   return shuffledWords
 }
 
-export function shuffle(array: Word[]) {
+export function shuffle(array: WordType[]) {
   var currentIndex = array.length,
     randomIndex
 
@@ -58,4 +65,12 @@ export function shuffleLetters(array: string[]) {
   }
 
   return array
+}
+
+export function getUnusedWords(array: WordType[], wordsLearnt: string[]) {
+  const filteredWords = array.filter(word => {
+    if (wordsLearnt.indexOf(word._id) === -1) return word
+  })
+
+  return filteredWords
 }
