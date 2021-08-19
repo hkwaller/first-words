@@ -12,7 +12,7 @@ type Props = {
 function Letter({ letter, index, updateIndex, isActive }: Props) {
   return (
     <CardContainer index={index} updateIndex={updateIndex} isActive={isActive}>
-      <Text style={{ fontSize: 200, marginBottom: 20 }}>{letter.toUpperCase()}</Text>
+      <Text style={{ fontSize: 200, marginBottom: 20 }}>{letter}</Text>
     </CardContainer>
   )
 }

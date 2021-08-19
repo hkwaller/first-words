@@ -1,5 +1,4 @@
-import React, { useCallback, useState } from 'react'
-import { useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { view } from '@risingstack/react-easy-state'
@@ -16,6 +15,7 @@ import { t } from 'src/backend/lang'
 import Category from 'src/components/Category'
 import Checkbox from 'src/components/Checkbox'
 import { Word } from 'src/backend/types'
+import BackButton from 'src/components/BackButton'
 
 function FreePlaySetup() {
   const [showNewWords, setShowNewWords] = useState(false)
@@ -60,9 +60,10 @@ function FreePlaySetup() {
         <TopLine style={[styles.line, styles.topLine]} color={colors.lightBlue} />
         <BottomLine style={[styles.line, styles.bottomLine]} color={colors.lightPink} />
         <ButtonText style={styles.buttonContainer}>{t('start')}</ButtonText>
+        <BackButton />
         <BodyText style={styles.bodyText}>{t('setup_word_amount')}</BodyText>
         <View style={styles.sliderContainer}>
-          <Slider />
+          <Slider type="words" />
         </View>
         <Checkbox
           title={t('only_new_words')}
@@ -74,11 +75,24 @@ function FreePlaySetup() {
         </BodyText>
         <View style={{ alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: 'row' }}>
           {state.categories.map(category => {
+            const isActive = state.currentCategories.indexOf(category._id) > -1
+
             return (
               <Category
                 key={category._id}
-                id={category._id}
                 title={category.title[state.settings.language || 'no']}
+                isActive={isActive}
+                onPress={() => {
+                  if (isActive) {
+                    state.currentCategories = state.currentCategories.filter(
+                      i => i !== category._id,
+                    )
+                    return
+                  } else {
+                    state.currentCategories = [...state.currentCategories, category._id]
+                    return
+                  }
+                }}
               />
             )
           })}
@@ -119,7 +133,7 @@ function FreePlaySetup() {
         </NavigationButton>
       </SafeAreaView>
       <Animated.View style={[styles.modal, animatedStyle]}>
-        <BodyText>{t('no_new_words')}</BodyText>
+        <BodyText style={{ textAlign: 'center' }}>{t('no_new_words')}</BodyText>
       </Animated.View>
     </>
   )
@@ -129,7 +143,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blue,
-    paddingTop: 100,
+    paddingTop: 40,
     justifyContent: 'flex-start',
     paddingHorizontal: 20,
   },
@@ -164,6 +178,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
+    padding: 30,
   },
 })
 

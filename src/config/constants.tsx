@@ -7,10 +7,13 @@ export const SCREEN_HEIGHT = Dimensions.get('screen').height
 export const CARD_WIDTH = SCREEN_WIDTH - 100
 
 export const ALPHABET = {
-  sv: 'abcdefghijklmnopqrstuvwqxyzåäö',
   en: 'abcdefghijklmnopqrstuvwxyz',
-  no: 'abcdefghijklmnopqrstuvwxycæåø',
+  sv: 'abcdefghijklmnopqrstuvwxyzåäö',
+  no: 'abcdefghijklmnopqrstuvwxyzæåø',
 }
+
+export const VOWELS = /[aeiouyåäöæø]/
+export const CONSONANTS = /[bcdfghjklmnpqrstvwxy]/
 
 export const colors = {
   blue: '#AAE0FC',

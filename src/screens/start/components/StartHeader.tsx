@@ -6,7 +6,7 @@ import { t } from 'src/backend/lang'
 import { BodyText, NameText } from 'src/components/styled'
 
 function StartHeader() {
-  if (!state.settings.animal) return
+  if (!state.settings.animal) return null
 
   return (
     <View style={styles.container}>
