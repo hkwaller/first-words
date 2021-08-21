@@ -12,7 +12,6 @@ import { shuffle, shuffleLetters } from 'src/backend/api'
 import { ALPHABET, colors } from 'src/config/constants'
 import StartHeader from './components/StartHeader'
 import IntroModal from 'src/components/intro-modal/IntroModal'
-import LanguageSelector from './components/LanguageSelector'
 import { BodyText } from 'src/components/styled'
 import { save } from 'src/config/helpers'
 
@@ -65,28 +64,7 @@ function Start() {
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200 }}>
       <SafeAreaView style={{ padding: 30 }}>
         <StartHeader />
-        {state.settings.wordsPlayed > 1 && !state.settings.hasPurchased ? (
-          <View
-            style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
-          >
-            <BodyText style={{ color: 'white' }}>
-              Det å lage app tar tid, og koster penger å drifte. Du får spille 200 ord og bokstaver
-              gratis. Men etter det må vi ta betalt. Akkurat nå har du{' '}
-              {200 - state.settings.wordsPlayed} ord og bokstaver igjen å lære. Lykke til!
-            </BodyText>
-            <SmallButton
-              title="Kjøp"
-              onPress={async () => {
-                const purchase = await requestPurchase('astrid_premium')
 
-                if (purchase) {
-                  state.settings.hasPurchased = true
-                  save('settings', JSON.stringify(state.settings))
-                }
-              }}
-            />
-          </View>
-        ) : null}
         {state.settings.wordsPlayed < 200 || state.settings.hasPurchased ? (
           <>
             <Button
@@ -118,6 +96,28 @@ function Start() {
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
+        {state.settings.wordsPlayed > 1 && !state.settings.hasPurchased ? (
+          <View
+            style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
+          >
+            <BodyText style={{ color: 'white' }}>
+              Det å lage app tar tid, og koster penger å drifte. Du får spille 200 ord og bokstaver
+              gratis. Men etter det må vi ta betalt. Akkurat nå har du{' '}
+              {200 - state.settings.wordsPlayed} ord og bokstaver igjen å lære. Lykke til!
+            </BodyText>
+            <SmallButton
+              title="Kjøp"
+              onPress={async () => {
+                const purchase = await requestPurchase('astrid_premium')
+
+                if (purchase) {
+                  state.settings.hasPurchased = true
+                  save('settings', JSON.stringify(state.settings))
+                }
+              }}
+            />
+          </View>
+        ) : null}
       </SafeAreaView>
       <IntroModal isVisible={modalVisible} setModalVisible={setModalVisible} />
     </ScrollView>

@@ -10,8 +10,8 @@ function StartHeader() {
 
   return (
     <View style={styles.container}>
-      <Image source={state.settings.animal.image} />
-      <BodyText style={{ marginTop: 40 }}>{t('welcome')}</BodyText>
+      <Image source={state.settings.animal.image} resizeMode="contain" style={{ height: 80 }} />
+      <BodyText style={{ marginTop: 20 }}>{t('welcome')}</BodyText>
       <NameText style={{ color: state.settings.animal.color }}>{state.settings.name}</NameText>
     </View>
   )
