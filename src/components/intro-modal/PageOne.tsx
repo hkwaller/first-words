@@ -10,7 +10,7 @@ function PageOne({ navigate }: { navigate: () => void }) {
 
   return (
     <View style={styles.pageContainer}>
-      {state.settings.name?.length === 0 && <Header>Velkommen</Header>}
+      <Header>Velkommen</Header>
       <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
         Velkommen til <Text style={{ fontWeight: '800' }}>Astrid</Text>, appen som lærer ditt barn

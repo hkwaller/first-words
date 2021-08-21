@@ -31,7 +31,7 @@ export const state = easyStore<State>({
   currentCategories: [],
   currentLetterCategory: 'all',
   currentLetterCasing: 'uppercase',
-  currentLettersGame: [],
+  currentLettersGame: '',
   settings: {
     language: 'no',
     name: '',

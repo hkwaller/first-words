@@ -2,20 +2,17 @@ import React, { useCallback, useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { view } from '@risingstack/react-easy-state'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { getUnusedWords, shuffle } from 'src/backend/api'
 import { state } from 'src/backend/data'
 import Slider from 'src/components/Slider'
 import { BodyText, ButtonText, NavigationButton } from 'src/components/styled'
 import { colors, SCREEN_WIDTH } from 'src/config/constants'
-import TopLine from 'src/components/svg/TopLine'
-import BottomLine from 'src/components/svg/BottomLine'
 import { t } from 'src/backend/lang'
 import Category from 'src/components/Category'
 import Checkbox from 'src/components/Checkbox'
 import { Word } from 'src/backend/types'
-import BackButton from 'src/components/BackButton'
+import Screen from 'src/components/Screen'
 
 function FreePlaySetup() {
   const [showNewWords, setShowNewWords] = useState(false)
@@ -54,13 +51,44 @@ function FreePlaySetup() {
     bottom: withTiming(y.value),
   }))
 
+  function handleNavigation() {
+    let words = state.words
+    if (showNewWords) {
+      words = getUnusedWords(state.words, state.settings.wordsLearnt)
+    }
+    const shuffledWords = shuffle(words)
+
+    state.currentGame =
+      state.currentCategories.length === 0
+        ? shuffledWords.slice(0, state.settings.preferredAmountWords)
+        : shuffledWords
+            .filter(word => {
+              return state.currentCategories.indexOf(word.category._id) > -1
+            })
+            .slice(0, state.settings.preferredAmountWords)
+
+    if (state.currentGame.length === 0) {
+      y.value = 0
+
+      setTimeout(() => {
+        y.value = -1000
+      }, 3000)
+
+      return
+    }
+
+    navigation.navigate('FreePlay')
+  }
+
   return (
     <>
-      <SafeAreaView style={styles.container}>
-        <TopLine style={[styles.line, styles.topLine]} color={colors.lightBlue} />
-        <BottomLine style={[styles.line, styles.bottomLine]} color={colors.lightPink} />
-        <ButtonText style={styles.buttonContainer}>{t('start')}</ButtonText>
-        <BackButton />
+      <Screen
+        button={
+          <NavigationButton color={colors.blue} onPress={handleNavigation}>
+            <ButtonText>Start</ButtonText>
+          </NavigationButton>
+        }
+      >
         <BodyText style={styles.bodyText}>{t('setup_word_amount')}</BodyText>
         <View style={styles.sliderContainer}>
           <Slider type="words" />
@@ -73,7 +101,7 @@ function FreePlaySetup() {
         <BodyText style={styles.bodyText}>
           {t('setup_categories')} ({t('words')}: {currentWords.length})
         </BodyText>
-        <View style={{ alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: 'row' }}>
+        <View style={styles.categoryContainer}>
           {state.categories.map(category => {
             const isActive = state.currentCategories.indexOf(category._id) > -1
 
@@ -97,41 +125,7 @@ function FreePlaySetup() {
             )
           })}
         </View>
-        <View style={{ flex: 1 }} />
-        <NavigationButton
-          color={colors.yellow}
-          onPress={() => {
-            let words = state.words
-            if (showNewWords) {
-              words = getUnusedWords(state.words, state.settings.wordsLearnt)
-            }
-            const shuffledWords = shuffle(words)
-
-            state.currentGame =
-              state.currentCategories.length === 0
-                ? shuffledWords.slice(0, state.settings.preferredAmountWords)
-                : shuffledWords
-                    .filter(word => {
-                      return state.currentCategories.indexOf(word.category._id) > -1
-                    })
-                    .slice(0, state.settings.preferredAmountWords)
-
-            if (state.currentGame.length === 0) {
-              y.value = 0
-
-              setTimeout(() => {
-                y.value = -1000
-              }, 3000)
-
-              return
-            }
-
-            navigation.navigate('FreePlay')
-          }}
-        >
-          <ButtonText>Start</ButtonText>
-        </NavigationButton>
-      </SafeAreaView>
+      </Screen>
       <Animated.View style={[styles.modal, animatedStyle]}>
         <BodyText style={{ textAlign: 'center' }}>{t('no_new_words')}</BodyText>
       </Animated.View>
@@ -147,17 +141,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 20,
   },
-  line: {
-    position: 'absolute',
-  },
-  topLine: {
-    right: 20,
-    top: 0,
-  },
-  bottomLine: {
-    left: 20,
-    bottom: 0,
-  },
+  categoryContainer: { alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: 'row' },
   sliderContainer: {
     backgroundColor: 'white',
     paddingVertical: 10,

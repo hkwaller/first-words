@@ -44,7 +44,6 @@ function FreePlay() {
         {activeIndex === state.currentGame.length && (
           <View style={{ marginHorizontal: 20, width: '90%' }}>
             <Button
-              key="0"
               title={t('play_more')}
               onPress={() => {
                 state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length

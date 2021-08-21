@@ -14,6 +14,7 @@ import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 import { colors } from 'src/config/constants'
 import { View } from 'react-native'
 import AlphabetSetup from 'src/screens/alphabet/AlphabetSetup'
+import Settings from 'src/screens/settings/Settings'
 
 const Stack = createStackNavigator()
 
@@ -67,6 +68,7 @@ function App() {
           <Stack.Screen name="FreePlaySetup" component={FreePlaySetup} />
           <Stack.Screen name="AlphabetSetup" component={AlphabetSetup} />
           <Stack.Screen name="Alphabet" component={Alphabet} />
+          <Stack.Screen name="Settings" component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

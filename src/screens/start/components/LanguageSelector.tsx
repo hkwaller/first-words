@@ -6,7 +6,7 @@ import { state } from 'src/backend/data'
 import { Languages } from 'src/backend/types'
 import LanguageButton from 'src/components/LanguageButton'
 import { BodyText } from 'src/components/styled'
-import { colors } from 'src/config/constants'
+import { colors, SCREEN_WIDTH } from 'src/config/constants'
 import { save } from 'src/config/helpers'
 
 function LanguageSelector() {
@@ -20,7 +20,15 @@ function LanguageSelector() {
   })
 
   return (
-    <View style={{ alignItems: 'center' }}>
+    <View
+      style={{
+        alignItems: 'center',
+        backgroundColor: 'white',
+        paddingVertical: 20,
+        width: SCREEN_WIDTH - 40,
+        borderRadius: 50,
+      }}
+    >
       <BodyText style={{ marginTop: 20 }}>Hvilket språk ønsker du?</BodyText>
       <View
         style={{ flexDirection: 'row', marginTop: 20 }}

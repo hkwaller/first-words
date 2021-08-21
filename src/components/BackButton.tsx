@@ -8,7 +8,13 @@ function BackButton() {
   return (
     <TouchableOpacity
       onPress={() => navigation.goBack()}
-      style={{ position: 'absolute', top: 40, left: 20, transform: [{ rotateZ: '4deg' }] }}
+      style={{
+        position: 'absolute',
+        top: 40,
+        left: 20,
+        transform: [{ rotateZ: '4deg' }],
+        zIndex: 100,
+      }}
     >
       <BodyText
         style={{
