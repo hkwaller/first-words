@@ -17,33 +17,27 @@ function AlphabetSetup(props: Props) {
   const navigation = useNavigation()
 
   function handleNavigation() {
-    let gameLetters = ALPHABET[state.settings.language]
+    let gameLetters = shuffleLetters(ALPHABET[state.settings.language].split(''))
 
     if (state.currentLetterCategory === 'vowels') {
-      gameLetters = gameLetters
-        .split('')
-        .filter(letter => VOWELS.test(letter))
-        .join('')
+      gameLetters = gameLetters.filter(letter => VOWELS.test(letter))
     } else if (state.currentLetterCategory === 'consonants') {
-      gameLetters = gameLetters
-        .split('')
-        .filter(letter => CONSONANTS.test(letter))
-        .join('')
+      gameLetters = gameLetters.filter(letter => CONSONANTS.test(letter))
     }
 
     if (state.currentLetterCasing === 'lowercase') {
-      gameLetters = gameLetters.toLowerCase()
+      gameLetters = gameLetters.join('').toLowerCase().split('')
     } else if (state.currentLetterCasing === 'uppercase') {
-      gameLetters = gameLetters.toUpperCase()
+      gameLetters = gameLetters.join('').toUpperCase().split('')
     } else if (state.currentLetterCasing === 'mixed') {
-      gameLetters = shuffleLetters(gameLetters.split(''))
-        .map((letter, index) => (index % 2 === 0 ? letter.toUpperCase() : letter.toLowerCase()))
-        .join('')
+      gameLetters = shuffleLetters(gameLetters).map((letter, index) =>
+        index % 2 === 0 ? letter.toUpperCase() : letter.toLowerCase(),
+      )
 
-      gameLetters = shuffleLetters(gameLetters.split('')).join('')
+      gameLetters = shuffleLetters(gameLetters)
     }
 
-    state.currentLettersGame = gameLetters.slice(0, state.settings.preferredAmountLetters)
+    state.currentLettersGame = gameLetters.slice(0, state.settings.preferredAmountLetters).join('')
     navigation.navigate('Alphabet')
   }
 

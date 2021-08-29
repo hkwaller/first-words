@@ -3486,11 +3486,6 @@ expo-image-loader@~2.2.0:
   resolved "https://registry.npmjs.org/expo-image-loader/-/expo-image-loader-2.2.0.tgz"
   integrity sha512-kTs/lW8LUXYFQ5t8wkdJs0A41zd7dIB8uRRC0a9L0EurSGUvQWiVTbHQoLo/GYWL7nM85OaPAe2qkHfcz5KeyA==
 
-expo-in-app-purchases@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.npmjs.org/expo-in-app-purchases/-/expo-in-app-purchases-10.2.0.tgz"
-  integrity sha512-KDEVAfxC+yxqvJSpnTG7yBMxb2nIXE3y4TkdeeHkOcFU+RsOGt7c6Ocu1Jd6fLOjbcS2ftA+9vvBCF3/2bLXDg==
-
 expo-keep-awake@~9.2.0:
   version "9.2.0"
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-9.2.0.tgz"
@@ -5857,10 +5852,10 @@ react-native-gesture-handler@~1.10.2:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-iap@^7.2.1-rc3:
-  version "7.2.1-rc3"
-  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-7.2.1-rc3.tgz#305580953a71335aab5a76a6efb710f1173ba7da"
-  integrity sha512-o+5FPJSEhj/BnKrkYX+lJW5MnH4IPQx6SoC+cIvMQs6V4OWRTNq8ao46JNEUAYI74rzpJO749K7srgJyADos8w==
+react-native-iap@7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-7.2.1.tgz#f1eca6133d1df05af722c06e7862345049c7ebff"
+  integrity sha512-kNMSmW/ME5yOFBf2MJpGYtpZ47Te6auqrg3Tgd0RyJTHtROUbjlYJnNe6oCneYZ1GimV4NlWQ+Oa4se2EZO12g==
   dependencies:
     dooboolab-welcome "1.3.2"
 

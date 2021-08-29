@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { view } from '@risingstack/react-easy-state'
-import { requestPurchase, requestSubscription, useIAP } from 'react-native-iap'
+import { requestPurchase, useIAP } from 'react-native-iap'
 import Button from 'src/components/Button'
 import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
@@ -15,34 +15,19 @@ import IntroModal from 'src/components/intro-modal/IntroModal'
 import { BodyText } from 'src/components/styled'
 import { save } from 'src/config/helpers'
 
+const productIds = ['astrid_premium']
+
 function Start() {
   const [modalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
 
-  const {
-    connected,
-    products,
-    getProducts,
-    finishTransaction,
-    currentPurchase,
-    currentPurchaseError,
-  } = useIAP()
+  const { getProducts, finishTransaction, currentPurchase } = useIAP()
 
   useEffect(() => {
-    async function s() {
-      console.log('🚀 ~ file: Start.tsx ~ line 31 ~ Start ~ products', connected)
-    }
-    s()
     if (state.settings.name?.length === 0) {
       setModalVisible(true)
     }
   }, [])
-
-  useEffect(() => {
-    if (connected) {
-      getProducts(['astrid_premium'])
-    }
-  }, [connected])
 
   useEffect(() => {
     const checkCurrentPurchase = async (purchase: any): Promise<void> => {
@@ -92,27 +77,32 @@ function Start() {
         ) : null}
 
         <SmallButton
-          title="Innstillinger"
+          title={t('settings')}
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
-        {state.settings.wordsPlayed > 1 && !state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed > 100 && !state.settings.hasPurchased ? (
           <View
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
           >
             <BodyText style={{ color: 'white' }}>
-              Det å lage app tar tid, og koster penger å drifte. Du får spille 200 ord og bokstaver
+              Det å lage app tar tid, og koster penger å drifte. Du får spille 100 ord og bokstaver
               gratis. Men etter det må vi ta betalt. Akkurat nå har du{' '}
-              {200 - state.settings.wordsPlayed} ord og bokstaver igjen å lære. Lykke til!
+              {100 - state.settings.wordsPlayed} ord og bokstaver igjen å lære. Lykke til!
             </BodyText>
             <SmallButton
-              title="Kjøp"
+              title={t('buy')}
               onPress={async () => {
-                const purchase = await requestPurchase('astrid_premium')
+                try {
+                  const purchase = await requestPurchase('astrid_premium')
+                  console.log('🚀 ~ file: Start.tsx ~ line 98 ~ onPress={ ~ purchase', purchase)
 
-                if (purchase) {
-                  state.settings.hasPurchased = true
-                  save('settings', JSON.stringify(state.settings))
+                  if (purchase) {
+                    state.settings.hasPurchased = true
+                    save('settings', JSON.stringify(state.settings))
+                  }
+                } catch (e) {
+                  console.log('🚀 ~ file: Start.tsx ~ line 118 ~ onPress={ ~ e', e)
                 }
               }}
             />

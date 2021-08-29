@@ -18,8 +18,6 @@ PODS:
     - ExpoModulesCore
     - React-Core
     - UMCore
-  - EXInAppPurchases (10.2.0):
-    - UMCore
   - EXKeepAwake (9.2.0):
     - UMCore
   - EXLocalization (10.2.0):
@@ -296,7 +294,7 @@ PODS:
     - React
   - RNGestureHandler (1.10.3):
     - React-Core
-  - RNIap (7.2.1-rc3):
+  - RNIap (7.2.1):
     - React-Core
   - RNReanimated (2.2.0):
     - DoubleConversion
@@ -350,7 +348,6 @@ DEPENDENCIES:
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
-  - EXInAppPurchases (from `../node_modules/expo-in-app-purchases/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - EXLocalization (from `../node_modules/expo-localization/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
@@ -417,8 +414,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   EXImageLoader:
     :path: "../node_modules/expo-image-loader/ios"
-  EXInAppPurchases:
-    :path: "../node_modules/expo-in-app-purchases/ios"
   EXKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
   EXLocalization:
@@ -517,7 +512,6 @@ SPEC CHECKSUMS:
   EXFileSystem: 0a04aba8da751b9ac954065911bcf166503f8267
   EXFont: 9846ba1bb6f5f5aed44e20eea3ac70693323832d
   EXImageLoader: d3531a3fe530b22925c19977cb53bb43e3821fe6
-  EXInAppPurchases: e54068db701c8879d975a1f304b2d00e6fc8eece
   EXKeepAwake: f4105ef469be7b283f66ce2d7234bb71ac80cd26
   EXLocalization: 356f4e16a606cec21a77d6250528fde526152b45
   ExpoModulesCore: 2734852616127a6c1fc23012197890a6f3763dc7
@@ -553,7 +547,7 @@ SPEC CHECKSUMS:
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNIap: 20243acbc66929bb8413c1a17b2eadf523cc3cbc
+  RNIap: 536b64f090a3d2e707b4f55d9aa5351482f20ea4
   RNReanimated: d9da990fc90123f4ffbfdda93d00fc15174863a8
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
@@ -563,6 +557,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 2be431101b73604e64fbfffcf759336f9d8fccbb
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: 7e01d53379cd69ef43be28c13e1acfe7bea530b3
+PODFILE CHECKSUM: f29eee296b55184863db51fe754837093a50e0a7
 
 COCOAPODS: 1.10.1

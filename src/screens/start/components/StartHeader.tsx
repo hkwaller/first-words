@@ -19,9 +19,8 @@ function StartHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 40,
+    padding: 30,
     alignItems: 'center',
-    marginBottom: 20,
   },
 })
 

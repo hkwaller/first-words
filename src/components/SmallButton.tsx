@@ -15,22 +15,25 @@ function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2
       onPress={onPress}
       color={backgroundColor}
       rotation={rotation}
-      style={{
-        alignSelf: 'center',
-        marginBottom: 20,
-        shadowColor: 'gray',
-        shadowOffset: {
-          width: 0,
-          height: 1,
+      style={[
+        {
+          alignSelf: 'center',
+          marginBottom: 20,
+          shadowColor: 'gray',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 10,
+          elevation: 3,
         },
-        shadowOpacity: 0.2,
-        shadowRadius: 10,
-        elevation: 3,
-      }}
+        styles.container,
+      ]}
     >
-      <View style={styles.container}>
-        <ButtonText style={{ marginHorizontal: 15, fontSize: 30 }}>{title}</ButtonText>
-      </View>
+      <ButtonText style={{ marginHorizontal: 15, fontSize: 30, textAlign: 'center' }}>
+        {title}
+      </ButtonText>
     </SmallButtonContainer>
   )
 }

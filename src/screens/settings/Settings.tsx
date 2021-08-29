@@ -2,11 +2,13 @@ import { view } from '@risingstack/react-easy-state'
 import React from 'react'
 import { StyleSheet, View, TextInput } from 'react-native'
 import { state } from 'src/backend/data'
+import { t } from 'src/backend/lang'
 import AnimalButton from 'src/components/AnimalButton'
 import Screen from 'src/components/Screen'
 import { BodyText } from 'src/components/styled'
 import { animals, colors } from 'src/config/constants'
 import LanguageSelector from '../start/components/LanguageSelector'
+import Restore from '../start/components/Restore'
 
 function Settings() {
   return (
@@ -14,7 +16,7 @@ function Settings() {
       <View style={{ marginVertical: 20 }} />
       <LanguageSelector />
       <View style={styles.animalWrapper}>
-        <BodyText style={{ marginTop: 40 }}>Hvilket dyr vil du være?</BodyText>
+        <BodyText style={{ marginTop: 40 }}>{t('settings_animal')}</BodyText>
         <View style={styles.animalContainer}>
           {animals.map(animal => {
             return <AnimalButton key={animal.name} {...{ animal }} />
@@ -22,9 +24,9 @@ function Settings() {
         </View>
       </View>
       <View style={[styles.animalWrapper, { paddingHorizontal: 30 }]}>
-        <BodyText style={{ marginTop: 40 }}>Byttet navn siden sist?</BodyText>
+        <BodyText style={{ marginTop: 40 }}>{t('settings_name')}</BodyText>
         <TextInput
-          placeholder="Hva heter barnet?"
+          placeholder={t('settings_name_placeholder')}
           style={styles.input}
           placeholderTextColor="gray"
           value={state.settings.name}
@@ -33,6 +35,7 @@ function Settings() {
           }}
         />
       </View>
+      <Restore />
     </Screen>
   )
 }
