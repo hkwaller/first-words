@@ -23,9 +23,9 @@ function Category({ title, onPress, isActive }: Props) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 5,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 40,
     marginBottom: 10,
     marginRight: 10,
   },

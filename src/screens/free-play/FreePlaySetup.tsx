@@ -93,11 +93,7 @@ function FreePlaySetup() {
         <View style={styles.sliderContainer}>
           <Slider type="words" />
         </View>
-        <Checkbox
-          title={t('only_new_words')}
-          active={showNewWords}
-          onToggle={() => setShowNewWords(!showNewWords)}
-        />
+
         <BodyText style={styles.bodyText}>
           {t('setup_categories')} ({t('words')}: {currentWords.length})
         </BodyText>
@@ -125,6 +121,11 @@ function FreePlaySetup() {
             )
           })}
         </View>
+        <Checkbox
+          title={t('only_new_words')}
+          active={showNewWords}
+          onToggle={() => setShowNewWords(!showNewWords)}
+        />
       </Screen>
       <Animated.View style={[styles.modal, animatedStyle]}>
         <BodyText style={{ textAlign: 'center' }}>{t('no_new_words')}</BodyText>

@@ -10,17 +10,25 @@ function StartHeader() {
 
   return (
     <View style={styles.container}>
-      <Image source={state.settings.animal.image} resizeMode="contain" style={{ height: 80 }} />
-      <BodyText style={{ marginTop: 20 }}>{t('welcome')}</BodyText>
-      <NameText style={{ color: state.settings.animal.color }}>{state.settings.name}</NameText>
+      <Image
+        source={state.settings.animal.image}
+        resizeMode="contain"
+        style={{ width: 100, marginRight: 40 }}
+      />
+      <View>
+        <BodyText style={{ marginTop: 20 }}>{t('welcome')}</BodyText>
+        <NameText style={{ color: state.settings.animal.color }}>{state.settings.name}</NameText>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
     alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingBottom: 30,
   },
 })
 

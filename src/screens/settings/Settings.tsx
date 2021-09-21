@@ -35,7 +35,7 @@ function Settings() {
           }}
         />
       </View>
-      <Restore />
+      {!state.settings.hasPurchased ? <Restore /> : null}
     </Screen>
   )
 }
