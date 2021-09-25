@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import { state } from 'src/backend/data'
+import { t } from 'src/backend/lang'
 import { Languages } from 'src/backend/types'
 import LanguageButton from 'src/components/LanguageButton'
 import { BodyText } from 'src/components/styled'
@@ -29,7 +30,7 @@ function LanguageSelector() {
         borderRadius: 50,
       }}
     >
-      <BodyText style={{ marginTop: 20 }}>Hvilket språk ønsker du?</BodyText>
+      <BodyText style={{ marginTop: 20 }}>{t('settings_language')}</BodyText>
       <View
         style={{ flexDirection: 'row', marginTop: 20 }}
         onLayout={({ nativeEvent }) => {
