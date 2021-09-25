@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { t } from 'src/backend/lang'
 import { animals, colors, SCREEN_WIDTH } from 'src/config/constants'
 import AnimalButton from '../AnimalButton'
 import { BodyText, NavigationButton } from '../styled'
@@ -7,7 +8,7 @@ import { BodyText, NavigationButton } from '../styled'
 function PageTwo({ close }: { close: () => void }) {
   return (
     <View style={styles.pageContainer}>
-      <BodyText>Hvilket dyr vil du være?</BodyText>
+      <BodyText>{t('settings_animal')}</BodyText>
       <View style={styles.animalContainer}>
         {animals.map(animal => {
           return <AnimalButton key={animal.name} {...{ animal }} />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { view } from '@risingstack/react-easy-state'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import AppLoading from 'expo-app-loading'
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
 import { getCategories, getWords } from './src/backend/api'
@@ -12,25 +11,28 @@ import FreePlay from 'src/screens/free-play/FreePlay'
 import { getValueFor, save } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
 import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
+import { colors } from 'src/config/constants'
+import { View } from 'react-native'
+import AlphabetSetup from 'src/screens/alphabet/AlphabetSetup'
+import Settings from 'src/screens/settings/Settings'
 
 const Stack = createStackNavigator()
 
 function App() {
   const [everythingLoaded, setEverythingLoaded] = useState(false)
+
   useEffect(() => {
     async function t() {
-      const settings = await getValueFor('settings')
       const words = await getWords()
       const categories = await getCategories()
-
+      const settings = await getValueFor('settings')
       state.words = words
       state.categories = categories
-      state.settings = JSON.parse(settings as any)
-
-      state.settings.lastWordCount = words.length
-
-      // state.settings.name = ''
-      save('settings', JSON.stringify(state.settings))
+      if (settings) {
+        state.settings = JSON.parse(settings as any)
+        state.settings.lastWordCount = words.length
+        save('settings', JSON.stringify(state.settings))
+      }
       setEverythingLoaded(true)
     }
 
@@ -41,7 +43,8 @@ function App() {
     MyHappyEndingRegular: require('./assets/fonts/MyHappyEndingRegular.ttf'),
   })
 
-  if (!fontsLoaded || !everythingLoaded) return <AppLoading />
+  if (!fontsLoaded || !everythingLoaded)
+    return <View style={{ width: '100%', height: '100%', backgroundColor: colors.lightPink }} />
 
   return (
     <>
@@ -61,9 +64,11 @@ function App() {
           }}
         >
           <Stack.Screen name="Start" component={Start} />
-          <Stack.Screen name="FreePlay" component={FreePlay} />
+          <Stack.Screen name="FreePlay" component={FreePlay} options={{ gestureEnabled: false }} />
           <Stack.Screen name="FreePlaySetup" component={FreePlaySetup} />
+          <Stack.Screen name="AlphabetSetup" component={AlphabetSetup} />
           <Stack.Screen name="Alphabet" component={Alphabet} />
+          <Stack.Screen name="Settings" component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

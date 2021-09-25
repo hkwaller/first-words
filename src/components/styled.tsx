@@ -8,7 +8,7 @@ export const Header = styled.Text`
 
 export const ButtonText = styled.Text`
   font-family: 'MyHappyEndingRegular';
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
 `
 export const BodyText = styled.Text`
@@ -29,6 +29,7 @@ export const ButtonContainer = styled.TouchableOpacity<{ color: string; rotation
   justify-content: center;
   margin-top: 20px;
   border-radius: 30px;
+  max-width: 500px;
   min-height: 180px;
   background-color: ${props => props.color || '#aae0fc'};
   transform: ${props => `rotate(${props.rotation || 2}deg)`};
@@ -40,7 +41,7 @@ export const NavigationButton = styled.TouchableOpacity<{ color: string }>`
   justify-content: center;
   margin-top: 20px;
   border-radius: 40px;
-  padding: 20px 60px;
+  padding: 10px 80px;
   align-self: center;
   background-color: ${props => props.color || '#aae0fc'};
   transform: rotate(2deg);

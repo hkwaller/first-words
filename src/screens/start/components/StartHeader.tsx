@@ -6,22 +6,29 @@ import { t } from 'src/backend/lang'
 import { BodyText, NameText } from 'src/components/styled'
 
 function StartHeader() {
-  if (!state.settings.animal) return
+  if (!state.settings.animal) return null
 
   return (
     <View style={styles.container}>
-      <Image source={state.settings.animal.image} />
-      <BodyText style={{ marginTop: 40 }}>{t('welcome')}</BodyText>
-      <NameText style={{ color: state.settings.animal.color }}>{state.settings.name}</NameText>
+      <Image
+        source={state.settings.animal.image}
+        resizeMode="contain"
+        style={{ width: 100, marginRight: 40 }}
+      />
+      <View>
+        <BodyText style={{ marginTop: 20 }}>{t('welcome')}</BodyText>
+        <NameText style={{ color: state.settings.animal.color }}>{state.settings.name}</NameText>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 40,
     alignItems: 'center',
-    marginBottom: 20,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingBottom: 30,
   },
 })
 

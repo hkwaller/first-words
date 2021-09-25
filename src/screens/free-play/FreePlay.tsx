@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { uniq } from 'lodash'
 import { view } from '@risingstack/react-easy-state'
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
 import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
 import { t } from 'src/backend/lang'
 import { save } from 'src/config/helpers'
-import { s } from 'src/config/constants'
+import { colors, s } from 'src/config/constants'
+import SmallButton from 'src/components/SmallButton'
+import BackButton from 'src/components/BackButton'
 
 function FreePlay() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -24,6 +26,8 @@ function FreePlay() {
   return (
     <>
       <Animated.View style={[styles.container]}>
+        <BackButton />
+
         {state.currentGame.map((word, index) => {
           return (
             <Word
@@ -38,20 +42,27 @@ function FreePlay() {
           )
         })}
         {activeIndex === state.currentGame.length && (
-          <Button
-            key="0"
-            title={t('back')}
-            onPress={() => {
-              state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
-              state.settings.wordsLearnt = uniq([
-                ...(state.settings.wordsLearnt || []),
-                ...state.currentGame.map(w => w._id),
-              ])
+          <View style={{ marginHorizontal: 20, width: '90%' }}>
+            <Button
+              title={t('play_more')}
+              onPress={() => {
+                state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
 
-              save('settings', JSON.stringify(state.settings))
-              navigation.goBack()
-            }}
-          />
+                state.settings.wordsLearnt = uniq([
+                  ...(state.settings.wordsLearnt || []),
+                  ...state.currentGame.map(w => w._id),
+                ])
+
+                save('settings', JSON.stringify(state.settings))
+                navigation.goBack()
+              }}
+            />
+            <SmallButton
+              title={t('back')}
+              onPress={() => navigation.navigate('Start')}
+              backgroundColor={colors.yellow}
+            />
+          </View>
         )}
       </Animated.View>
     </>
