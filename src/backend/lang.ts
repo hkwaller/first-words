@@ -12,6 +12,9 @@ export const translations = {
     only_new_words: 'Spill bare med nye ord',
     no_new_words: 'Fant ingen nye ord, prøv andre innstillinger',
     words: 'ord',
+    intro_1: 'Velkommen til',
+    intro_2: ', appen som lærer ditt barn ord og bokstaver i et rasende tempo.',
+    intro_3: 'Før vi starter så må vi bare etablere et par ting.',
     setup_letters: 'Hvor mange bokstaver?',
     setup_letters_type: 'Hva vil du spille med?',
     setup_letters_casing: 'Hvilken type bokstaver?',
@@ -34,6 +37,7 @@ export const translations = {
     begging_2: 'ord og bokstaver igjen å lære. Lykke til!',
     words_learnt_1: 'Heja, Du har lært deg',
     words_learnt_2: 'ord siden du startet!',
+    continue: 'Videre',
   },
   sv: {
     start: 'Bildlek',
@@ -46,6 +50,9 @@ export const translations = {
     only_new_words: 'Spela bara med nya ord',
     no_new_words: 'Hittade inga nya ord, prova andra inställningar',
     words: 'ord',
+    intro_1: 'Välkommen till',
+    intro_2: ', appen som lär ditt barn ord och bokstäver i ett rasende tempo.',
+    intro_3: 'Innan vi startar så måste vi bara etablera några saker',
     setup_letters: 'Hur många bokstäver?',
     setup_letters_type: 'Vad vill du spela med?',
     setup_letters_casing: 'Vilken typ av bokstäver?',
@@ -68,6 +75,7 @@ export const translations = {
     buy: 'Lås upp',
     words_learnt_1: 'Heja, du har lärt dig',
     words_learnt_2: 'ord sedan du startade!',
+    continue: 'Gå vidare',
   },
   en: {
     start: 'Picture game',
@@ -80,6 +88,9 @@ export const translations = {
     only_new_words: 'Play with new words only',
     no_new_words: 'Found no new words, try again',
     words: 'words',
+    intro_1: 'Welcome to',
+    intro_2: ', the app which teaches your child words and letters in a incredible tempo',
+    intro_3: 'Before we start we just have to establish a few things',
     setup_letters: 'How many letters?',
     setup_letters_type: 'What kind of letters?',
     setup_letters_casing: 'What casing?',
@@ -102,6 +113,7 @@ export const translations = {
     begging_2: 'words and letters left to learn. Good luck!',
     words_learnt_1: 'Well done! You have learnt',
     words_learnt_2: 'words since you started!',
+    continue: 'Continue',
   },
 }
 

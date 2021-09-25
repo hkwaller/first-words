@@ -1,6 +1,8 @@
+import { view } from '@risingstack/react-easy-state'
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { state } from 'src/backend/data'
+import { t } from 'src/backend/lang'
 import { colors, SCREEN_WIDTH } from 'src/config/constants'
 import LanguageSelector from 'src/screens/start/components/LanguageSelector'
 import { BodyText, Header, NavigationButton } from '../styled'
@@ -10,15 +12,15 @@ function PageOne({ navigate }: { navigate: () => void }) {
 
   return (
     <View style={styles.pageContainer}>
-      <Header>Velkommen</Header>
+      <Header>{t('welcome')}</Header>
       <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
-        Velkommen til <Text style={{ fontWeight: '800' }}>Astrid</Text>, appen som lærer ditt barn
-        ord og bokstaver i et rasende tempo.
+        {t('intro_1')} <Text style={{ fontWeight: '800' }}>Astrid</Text>
+        {t('intro_2')}
       </Text>
-      <Text>Før vi starter så må vi bare etablere et par ting. </Text>
+      <Text>{t('intro_3')}</Text>
       <TextInput
-        placeholder="Hva heter barnet?"
+        placeholder={t('settings_name_placeholder')}
         style={styles.input}
         placeholderTextColor="gray"
         value={name}
@@ -36,7 +38,7 @@ function PageOne({ navigate }: { navigate: () => void }) {
           state.settings.name = name
         }}
       >
-        <BodyText>Videre</BodyText>
+        <BodyText>{t('continue')}</BodyText>
       </NavigationButton>
     </View>
   )
@@ -59,4 +61,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PageOne
+export default view(PageOne)

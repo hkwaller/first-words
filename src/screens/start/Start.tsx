@@ -104,7 +104,7 @@ function Start() {
           </View>
         ) : null}
       </SafeAreaView>
-      <IntroModal isVisible={modalVisible} setModalVisible={setModalVisible} />
+      <IntroModal isVisible={true} setModalVisible={setModalVisible} />
     </ScrollView>
   )
 }
