@@ -29,6 +29,7 @@ export const ButtonContainer = styled.TouchableOpacity<{ color: string; rotation
   justify-content: center;
   margin-top: 20px;
   border-radius: 30px;
+  max-width: 500px;
   min-height: 180px;
   background-color: ${props => props.color || '#aae0fc'};
   transform: ${props => `rotate(${props.rotation || 2}deg)`};

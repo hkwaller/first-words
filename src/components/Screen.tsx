@@ -32,7 +32,7 @@ function Screen({ children, button }: Props) {
         {children}
       </ScrollView>
 
-      <View style={[styles.buttonContainer, { bottom: insets.bottom }]}>
+      <View style={[styles.buttonContainer, { bottom: Math.max(insets.bottom, 20) }]}>
         {button ? button : null}
       </View>
     </View>

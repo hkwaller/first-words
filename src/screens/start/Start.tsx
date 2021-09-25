@@ -21,7 +21,7 @@ function Start() {
   const [modalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
 
-  const { getProducts, finishTransaction, currentPurchase } = useIAP()
+  const { finishTransaction, currentPurchase } = useIAP()
 
   useEffect(() => {
     if (state.settings.name?.length === 0) {
@@ -47,10 +47,10 @@ function Start() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200 }}>
-      <SafeAreaView style={{ padding: 30 }}>
+      <SafeAreaView style={{ padding: 30, alignItems: 'center' }}>
         <StartHeader />
 
-        {state.settings.wordsPlayed < 200 || state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed < 100 || state.settings.hasPurchased ? (
           <>
             <Button
               title={t('start')}
@@ -86,16 +86,13 @@ function Start() {
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
           >
             <BodyText style={{ color: 'white' }}>
-              Det å lage app tar tid, og koster penger å drifte. Du får spille 100 ord og bokstaver
-              gratis. Men etter det må vi ta betalt. Akkurat nå har du{' '}
-              {100 - state.settings.wordsPlayed} ord og bokstaver igjen å lære. Lykke til!
+              {`${t('begging_1')} ${100 - state.settings.wordsPlayed} ${t('begging_2')}`}
             </BodyText>
             <SmallButton
               title={t('buy')}
               onPress={async () => {
                 try {
                   const purchase = await requestPurchase('astrid_premium')
-                  console.log('🚀 ~ file: Start.tsx ~ line 98 ~ onPress={ ~ purchase', purchase)
 
                   if (purchase) {
                     state.settings.hasPurchased = true

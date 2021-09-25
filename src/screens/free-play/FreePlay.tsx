@@ -47,6 +47,7 @@ function FreePlay() {
               title={t('play_more')}
               onPress={() => {
                 state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
+
                 state.settings.wordsLearnt = uniq([
                   ...(state.settings.wordsLearnt || []),
                   ...state.currentGame.map(w => w._id),

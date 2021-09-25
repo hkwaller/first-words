@@ -23,7 +23,10 @@ function Word({ word, index, isActive, updateIndex }: Props) {
         width={100}
         height={100}
         resizeMode="contain"
-        style={{ width: CARD_WIDTH - 70, height: CARD_WIDTH - 70 }}
+        style={{
+          width: CARD_WIDTH - 70,
+          height: CARD_WIDTH - 70,
+        }}
         source={{ uri: urlFor(word.image).width(CARD_WIDTH).url()! }}
       />
     </CardContainer>

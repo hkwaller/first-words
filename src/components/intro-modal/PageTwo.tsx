@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { t } from 'src/backend/lang'
 import { animals, colors, SCREEN_WIDTH } from 'src/config/constants'
 import AnimalButton from '../AnimalButton'
 import { BodyText, NavigationButton } from '../styled'

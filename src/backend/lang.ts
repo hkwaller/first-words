@@ -29,6 +29,9 @@ export const translations = {
     restore: 'Kjøpt appen tidligere? Trykk her.',
     restore_success: 'Kjøp gjenskapt. Kos deg!',
     buy: 'Lås opp',
+    begging_1:
+      'Det å lage app tar tid, og koster penger å drifte. Du får spille 100 ord og bokstaver gratis. Men etter det må vi ta betalt. Akkurat nå har du',
+    begging_2: 'ord og bokstaver igjen å lære. Lykke til!',
   },
   sv: {
     start: 'Bildlek',
@@ -57,6 +60,9 @@ export const translations = {
     play_more: 'Spela igen',
     restore: 'Har du tidigare köpt appen? Tryck här.',
     restore_success: 'Köp återskapat. Ha det så kul!',
+    begging_1:
+      'Det tar tid att utveckla en app, och det kostar pengar att driva. Du får spela 100 ord och bokstäver helt gratis, men efter det måste vi ta betalt. Just nu har du',
+    begging_2: 'ord och bokstäver kvar att lära. Lycka till!',
     buy: 'Lås upp',
   },
   en: {
@@ -87,6 +93,9 @@ export const translations = {
     restore: 'Have you previously bought the app. Tap here.',
     restore_success: 'Purchase restore. Enjoy the app!',
     buy: 'Unlock',
+    begging_1:
+      'It takes time to develop an app, and it costs money to run it. You get to play 100 words and letters completely free, but after that we have to charge. Right now you have',
+    begging_2: 'words and letters left to learn. Good luck!!',
   },
 }
 

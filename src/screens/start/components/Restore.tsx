@@ -13,7 +13,7 @@ function Restore() {
       await getAvailablePurchases()
       Alert.alert(t('restore_success'))
       state.settings.hasPurchased = true
-    } catch (err) {
+    } catch (err: any) {
       console.warn(err.message)
     }
   }

@@ -40,7 +40,7 @@ function Alphabet() {
         })}
 
         {activeIndex === state.currentLettersGame.length && (
-          <View style={{ marginHorizontal: 20, width: '90%' }}>
+          <View style={{ marginHorizontal: 20, width: '90%', alignItems: 'center' }}>
             <Button
               title={t('play_more')}
               onPress={() => {
