@@ -7,7 +7,7 @@ import { BodyText, NavigationButton } from '../styled'
 function PageTwo({ close }: { close: () => void }) {
   return (
     <View style={styles.pageContainer}>
-      <BodyText>Hvilket dyr vil du være?</BodyText>
+      <BodyText>{t('settings_animal')}</BodyText>
       <View style={styles.animalContainer}>
         {animals.map(animal => {
           return <AnimalButton key={animal.name} {...{ animal }} />
