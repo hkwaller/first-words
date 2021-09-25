@@ -32,6 +32,8 @@ export const translations = {
     begging_1:
       'Det å lage app tar tid, og koster penger å drifte. Du får spille 100 ord og bokstaver gratis. Men etter det må vi ta betalt. Akkurat nå har du',
     begging_2: 'ord og bokstaver igjen å lære. Lykke til!',
+    words_learnt_1: 'Heja, Du har lært deg',
+    words_learnt_2: 'ord siden du startet!',
   },
   sv: {
     start: 'Bildlek',
@@ -64,6 +66,8 @@ export const translations = {
       'Det tar tid att utveckla en app, och det kostar pengar att driva. Du får spela 100 ord och bokstäver helt gratis, men efter det måste vi ta betalt. Just nu har du',
     begging_2: 'ord och bokstäver kvar att lära. Lycka till!',
     buy: 'Lås upp',
+    words_learnt_1: 'Heja, du har lärt dig',
+    words_learnt_2: 'ord sedan du startade!',
   },
   en: {
     start: 'Picture game',
@@ -95,7 +99,9 @@ export const translations = {
     buy: 'Unlock',
     begging_1:
       'It takes time to develop an app, and it costs money to run it. You get to play 100 words and letters completely free, but after that we have to charge. Right now you have',
-    begging_2: 'words and letters left to learn. Good luck!!',
+    begging_2: 'words and letters left to learn. Good luck!',
+    words_learnt_1: 'Well done! You have learnt',
+    words_learnt_2: 'words since you started!',
   },
 }
 

@@ -15,8 +15,6 @@ import IntroModal from 'src/components/intro-modal/IntroModal'
 import { BodyText } from 'src/components/styled'
 import { save } from 'src/config/helpers'
 
-const productIds = ['astrid_premium']
-
 function Start() {
   const [modalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
@@ -81,7 +79,7 @@ function Start() {
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
-        {state.settings.wordsPlayed > 100 && !state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed > 50 && !state.settings.hasPurchased ? (
           <View
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
           >

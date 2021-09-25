@@ -25,11 +25,26 @@ export default {
       to: [{ type: 'category' }],
     },
   ],
+  orderings: [
+    {
+      title: 'Category',
+      name: 'categoryAsc',
+      by: [{ field: `category.title.${baseLanguage.id}`, direction: 'asc' }],
+    },
+  ],
   preview: {
     select: {
       title: `word.${baseLanguage.id}`,
+      category: `category.title.${baseLanguage.id}`,
       media: 'image',
-      category: 'category',
+    },
+    prepare(selection) {
+      const { title, category, media } = selection
+      return {
+        title: title,
+        subtitle: category,
+        media: media,
+      }
     },
   },
 }

@@ -23,6 +23,23 @@ function FreePlay() {
   //   }
   // }, [activeIndex])
 
+  function handleReturn(to?: 'start' | undefined) {
+    state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
+
+    state.settings.wordsLearnt = uniq([
+      ...(state.settings.wordsLearnt || []),
+      ...state.currentGame.map(w => w._id),
+    ])
+
+    save('settings', JSON.stringify(state.settings))
+
+    if (to === 'start') {
+      navigation.navigate('Start')
+    } else {
+      navigation.goBack()
+    }
+  }
+
   return (
     <>
       <Animated.View style={[styles.container]}>
@@ -43,23 +60,10 @@ function FreePlay() {
         })}
         {activeIndex === state.currentGame.length && (
           <View style={{ marginHorizontal: 20, width: '90%' }}>
-            <Button
-              title={t('play_more')}
-              onPress={() => {
-                state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
-
-                state.settings.wordsLearnt = uniq([
-                  ...(state.settings.wordsLearnt || []),
-                  ...state.currentGame.map(w => w._id),
-                ])
-
-                save('settings', JSON.stringify(state.settings))
-                navigation.goBack()
-              }}
-            />
+            <Button title={t('play_more')} onPress={() => handleReturn('start')} />
             <SmallButton
               title={t('back')}
-              onPress={() => navigation.navigate('Start')}
+              onPress={() => handleReturn()}
               backgroundColor={colors.yellow}
             />
           </View>
