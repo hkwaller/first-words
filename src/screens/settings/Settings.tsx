@@ -37,7 +37,7 @@ function Settings() {
       </View>
       {state.settings.wordsLearnt.length > 0 ? (
         <BodyText style={{ textAlign: 'center', marginTop: 24 }}>
-          {t('words_learnt_1')} {state.settings.wordsLearnt.length} {t('words_learnt_2')}
+          {t('words_learnt_1')} {state.settings.wordsPlayed} {t('words_learnt_2')}
         </BodyText>
       ) : null}
       {!state.settings.hasPurchased ? <Restore /> : null}

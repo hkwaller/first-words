@@ -53,6 +53,4 @@ export const s = [
   '#FF9898',
   '#FFB1FE',
   '#EFCAFF',
-  '#E3E3FF',
-  '#FCFEFF',
 ]

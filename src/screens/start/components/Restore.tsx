@@ -1,18 +1,23 @@
 import React from 'react'
 import { View, Alert } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
-import { getAvailablePurchases } from 'react-native-iap'
+import { getUniqueId } from 'react-native-device-info'
+import Iaphub from 'react-native-iaphub'
 import { state } from 'src/backend/data'
 import SmallButton from 'src/components/SmallButton'
 import { colors } from 'src/config/constants'
 import { t } from 'src/backend/lang'
+import { save } from 'src/config/helpers'
 
 function Restore() {
   const restore = async () => {
     try {
-      await getAvailablePurchases()
+      const id = getUniqueId()
+      await Iaphub.setUserId(id)
+      await Iaphub.restore()
       Alert.alert(t('restore_success'))
       state.settings.hasPurchased = true
+      save('settings', JSON.stringify(state.settings))
     } catch (err: any) {
       console.warn(err.message)
     }

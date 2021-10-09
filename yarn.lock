@@ -3731,6 +3731,11 @@ fbjs@^3.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
+fetch-retry@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/fetch-retry/-/fetch-retry-4.1.0.tgz#853ce17e3b23383bfeb3d34a1aa3dfb96a480d11"
+  integrity sha512-FUc9XZuhyE3ka3m53lec29PXVhdRf59QG01nE+OZdfl0M/R0E7Pk6k6qeWzHhX1pHl/f2JPA97sjjbHRgSg/9A==
+
 figures@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/figures/-/figures-2.0.0.tgz"
@@ -5841,6 +5846,16 @@ react-native-animatable@1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-device-info@^8.3.3:
+  version "8.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.3.3.tgz#05c1900602d174b58c6ac927d748a785d76d0898"
+  integrity sha512-l8/3MHq6O9PRWSrKwy63WvDCnt8IXOce86AEkJFVVtKR9cAGLLaFyXUGyqIc5T/kpCyOqofOattVDjZGUn/zAQ==
+
+react-native-fetch-polyfill@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-fetch-polyfill/-/react-native-fetch-polyfill-1.1.3.tgz#a02d9069a2f7108ca0b70b8469085c67cc02949c"
+  integrity sha512-zr5yXQftuGq+ABGa3n4ZE+vkL1lBsMSePkRINm3/6vlpbwnLXYoijwazTO/W8GjsV4LAgGmzuieZxKO/NxW19A==
+
 react-native-gesture-handler@~1.10.2:
   version "1.10.3"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz"
@@ -5858,6 +5873,14 @@ react-native-iap@7.2.1:
   integrity sha512-kNMSmW/ME5yOFBf2MJpGYtpZ47Te6auqrg3Tgd0RyJTHtROUbjlYJnNe6oCneYZ1GimV4NlWQ+Oa4se2EZO12g==
   dependencies:
     dooboolab-welcome "1.3.2"
+
+react-native-iaphub@^6.2.6:
+  version "6.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-iaphub/-/react-native-iaphub-6.2.6.tgz#887521d15f7129d80fdfaa099c6098c8d4b4d62e"
+  integrity sha512-kHoZ6OgGkMdYNvHf7sqTuuLw2LmOXlNqLprWXJqiZnNN9DfwuhUosr3BqqA/6jTvAwBkaD+bCR3D+kDTbWc3jQ==
+  dependencies:
+    fetch-retry "4.1.0"
+    react-native-fetch-polyfill "1.1.3"
 
 react-native-iphone-x-helper@^1.3.0:
   version "1.3.1"
@@ -5918,6 +5941,11 @@ react-native-unimodules@^0.14.6:
     find-up "~5.0.0"
     unimodules-app-loader "~2.2.0"
     unimodules-task-manager-interface "~6.2.0"
+
+react-native-uuid@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-uuid/-/react-native-uuid-2.0.1.tgz#ed4e2dfb1683eddb66967eb5dca140dfe1abddb9"
+  integrity sha512-cptnoIbL53GTCrWlb/+jrDC6tvb7ypIyzbXNJcpR3Vab0mkeaaVd5qnB3f0whXYzS+SMoSQLcUUB0gEWqkPC0g==
 
 react-native-web@~0.13.12:
   version "0.13.18"

@@ -60,10 +60,10 @@ function FreePlay() {
         })}
         {activeIndex === state.currentGame.length && (
           <View style={{ marginHorizontal: 20, width: '90%' }}>
-            <Button title={t('play_more')} onPress={() => handleReturn('start')} />
+            <Button title={t('play_more')} onPress={() => handleReturn()} />
             <SmallButton
               title={t('back')}
-              onPress={() => handleReturn()}
+              onPress={() => handleReturn('start')}
               backgroundColor={colors.yellow}
             />
           </View>
