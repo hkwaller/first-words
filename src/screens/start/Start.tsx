@@ -50,7 +50,7 @@ function Start() {
       <SafeAreaView style={{ padding: 30, alignItems: 'center' }}>
         <StartHeader />
 
-        {state.settings.wordsPlayed < 100 || state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed < 100 || state.settings.purchased ? (
           <>
             <Button
               title={t('start')}
@@ -81,7 +81,7 @@ function Start() {
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
-        {state.settings.wordsPlayed > 50 && !state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed > 50 && !state.settings.purchased ? (
           <View
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
           >

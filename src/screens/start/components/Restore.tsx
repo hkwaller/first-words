@@ -16,7 +16,7 @@ function Restore() {
       await Iaphub.setUserId(id)
       await Iaphub.restore()
       Alert.alert(t('restore_success'))
-      state.settings.hasPurchased = true
+      state.settings.purchased = true
       save('settings', JSON.stringify(state.settings))
     } catch (err: any) {
       console.warn(err.message)

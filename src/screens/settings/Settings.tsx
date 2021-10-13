@@ -44,7 +44,7 @@ function Settings() {
             {t('words_learnt_1')} {state.settings.wordsPlayed} {t('words_learnt_2')}
           </BodyText>
         ) : null}
-        {!state.settings.hasPurchased ? (
+        {!state.settings.purchased ? (
           <View>
             <SmallButton
               title={t('buy')}

@@ -19,7 +19,7 @@ type State = {
     wordsPlayed: number
     wordsLearnt: string[]
     lastWordCount: number
-    hasPurchased?: boolean
+    purchased?: boolean
   }
 }
 

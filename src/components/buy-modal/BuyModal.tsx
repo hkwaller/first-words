@@ -72,7 +72,7 @@ function BuyModal({ isVisible, setModalVisible }: Props) {
                   )
 
                   setModalVisible(false)
-                  state.settings.hasPurchased = true
+                  state.settings.purchased = true
                   save('settings', JSON.stringify(state.settings))
                 } catch (e) {
                   console.log('🚀 ~ file: Start.tsx ~ line 114 ~ onPress={ ~ e', e)
