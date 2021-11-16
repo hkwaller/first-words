@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { t } from 'src/backend/lang'
+import { colors } from 'src/config/constants'
 import { ButtonText, SmallButtonContainer } from './styled'
 
 type Props = {
@@ -7,13 +9,20 @@ type Props = {
   title: string
   backgroundColor?: string
   rotation?: number
+  loading?: boolean
 }
 
-function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2 }: Props) {
+function SmallButton({
+  onPress,
+  title,
+  backgroundColor = '#AAE0FC',
+  rotation = 2,
+  loading = false,
+}: Props) {
   return (
     <SmallButtonContainer
       onPress={onPress}
-      color={backgroundColor}
+      color={loading ? colors.darkGray : backgroundColor}
       rotation={rotation}
       style={[
         {
@@ -32,7 +41,7 @@ function SmallButton({ onPress, title, backgroundColor = '#AAE0FC', rotation = 2
       ]}
     >
       <ButtonText style={{ marginHorizontal: 15, fontSize: 30, textAlign: 'center' }}>
-        {title}
+        {loading ? t('loading') : title}
       </ButtonText>
     </SmallButtonContainer>
   )

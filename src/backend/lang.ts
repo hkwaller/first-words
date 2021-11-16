@@ -42,6 +42,7 @@ export const translations = {
     words_learnt_1: 'Heja, Du har spilt',
     words_learnt_2: 'ord siden du startet!',
     continue: 'Videre',
+    loading: 'Laster...',
   },
   sv: {
     start: 'Bildlek',
@@ -84,6 +85,7 @@ export const translations = {
     words_learnt_1: 'Heja, du har spelat',
     words_learnt_2: 'ord sedan du startade!',
     continue: 'Gå vidare',
+    loading: 'Laddar...',
   },
   en: {
     start: 'Picture game',
@@ -114,7 +116,7 @@ export const translations = {
     settings_animal: 'What animal do you want to be?',
     settings_name: 'Changed your name lately?',
     settings_name_placeholder: 'Name of the child?',
-    restore: 'Have you previously bought the app. Tap here.',
+    restore: 'Have you previously bought the app? Tap here.',
     restore_success: 'Purchase restore. Enjoy the app!',
     buy: 'Unlock',
     parental_gate_text:
@@ -126,6 +128,7 @@ export const translations = {
     words_learnt_1: 'Well done! You have played',
     words_learnt_2: 'words since you started!',
     continue: 'Continue',
+    loading: 'Loading...',
   },
 }
 

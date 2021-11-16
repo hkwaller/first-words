@@ -1,6 +1,6 @@
 import { view } from '@risingstack/react-easy-state'
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, StyleSheet, ScrollView } from 'react-native'
 import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
 import { colors, SCREEN_WIDTH } from 'src/config/constants'
@@ -11,7 +11,7 @@ function PageOne({ navigate }: { navigate: () => void }) {
   const [name, setName] = useState(state.settings.name || '')
 
   return (
-    <View style={styles.pageContainer}>
+    <ScrollView contentContainerStyle={styles.pageContainer}>
       <Header>{t('welcome')}</Header>
       <LanguageSelector />
       <Text style={{ marginVertical: 40 }}>
@@ -40,7 +40,7 @@ function PageOne({ navigate }: { navigate: () => void }) {
       >
         <BodyText>{t('continue')}</BodyText>
       </NavigationButton>
-    </View>
+    </ScrollView>
   )
 }
 

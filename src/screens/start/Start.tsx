@@ -3,7 +3,6 @@ import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { view } from '@risingstack/react-easy-state'
-import { useIAP } from 'react-native-iap'
 import Button from 'src/components/Button'
 import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
@@ -21,29 +20,11 @@ function Start() {
   const navigation = useNavigation()
   const [buyModalVisible, setBuyModalVisible] = useState(false)
 
-  const { finishTransaction, currentPurchase } = useIAP()
-
   useEffect(() => {
     if (state.settings.name?.length === 0) {
       setModalVisible(true)
     }
   }, [])
-
-  useEffect(() => {
-    const checkCurrentPurchase = async (purchase: any): Promise<void> => {
-      if (purchase) {
-        const receipt = purchase.transactionReceipt
-        if (receipt)
-          try {
-            const ackResult = await finishTransaction(purchase)
-            console.log('ackResult', ackResult)
-          } catch (ackErr) {
-            console.warn('ackErr', ackErr)
-          }
-      }
-    }
-    checkCurrentPurchase(currentPurchase)
-  }, [currentPurchase, finishTransaction])
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200 }}>
@@ -81,6 +62,15 @@ function Start() {
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
+        {__DEV__ && (
+          <SmallButton
+            title="Ta bort köp"
+            backgroundColor={colors.lightPink}
+            onPress={() => {
+              state.settings.purchased = false
+            }}
+          />
+        )}
         {state.settings.wordsPlayed > 50 && !state.settings.purchased ? (
           <View
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}

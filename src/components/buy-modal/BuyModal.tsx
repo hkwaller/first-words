@@ -22,6 +22,7 @@ type Props = {
 function BuyModal({ isVisible, setModalVisible }: Props) {
   const [buyButtonVisible, setBuyButtonVisible] = useState(false)
   const [answer, setAnswer] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (parseInt(answer) === question?.answer) {
@@ -34,7 +35,14 @@ function BuyModal({ isVisible, setModalVisible }: Props) {
   const question = useMemo(() => sample(questions), [])
 
   return (
-    <Modal isVisible={isVisible} avoidKeyboard onBackdropPress={() => setModalVisible(false)}>
+    <Modal
+      isVisible={isVisible}
+      avoidKeyboard
+      onBackdropPress={() => {
+        setModalVisible(false)
+        setLoading(false)
+      }}
+    >
       <View style={styles.scrollViewWrapper}>
         <Header style={{ marginBottom: 20 }}>{t('buy')}</Header>
         <BodyText>{t('parental_gate_text')}</BodyText>
@@ -43,42 +51,51 @@ function BuyModal({ isVisible, setModalVisible }: Props) {
         </BodyText>
         <View style={{ flexDirection: 'row' }}>
           <TextInput
+            keyboardType="number-pad"
             placeholder={t('parental_gate_placeholder')}
             placeholderTextColor={colors.darkGray}
             onChangeText={val => setAnswer(val)}
-            style={{ backgroundColor: colors.lightPink, padding: 16, minWidth: 200 }}
+            style={{ backgroundColor: colors.lightPink, padding: 16, minWidth: 200, fontSize: 18 }}
           />
         </View>
         {buyButtonVisible ? (
           <SmallButton
             title={t('buy')}
+            loading={loading}
             onPress={async () => {
+              const id = getUniqueId()
+              await Iaphub.setUserId(id)
+
               try {
-                const id = getUniqueId()
-                await Iaphub.setUserId(id)
-                const products = await Iaphub.getProductsForSale()
+                setLoading(true)
+                console.log('isLOading', loading)
 
-                try {
-                  await Iaphub.buy('astrid_premium_2', {
-                    onReceiptProcess: receipt => {
-                      console.log('🚀 ~ file: Start.tsx ~ line 103 ~ onPress={ ~ receipt', receipt)
-                      console.log('Purchase success, processing receipt...')
-                    },
-                  })
+                await Iaphub.buy('astrid_premium_2', {
+                  onReceiptProcess: receipt => {
+                    console.log('🚀 ~ file: Start.tsx ~ line 103 ~ onPress={ ~ receipt', receipt)
+                    console.log('Purchase success, processing receipt...')
+                  },
+                })
 
-                  Alert.alert(
-                    'Purchase successful',
-                    'Your purchase has been processed successfully!',
-                  )
+                Alert.alert('Purchase successful', 'Your purchase has been processed successfully!')
 
-                  setModalVisible(false)
+                setModalVisible(false)
+                state.settings.purchased = true
+                save('settings', JSON.stringify(state.settings))
+                setLoading(false)
+                console.log('🚀 ~ file: Start.tsx ~ line 114 ~ onPress={ ~ e', e)
+              } catch (e) {
+                if (JSON.stringify(e).indexOf('product_already_purchased') > -1) {
+                  save('hasPurchased', JSON.stringify(true))
                   state.settings.purchased = true
                   save('settings', JSON.stringify(state.settings))
-                } catch (e) {
-                  console.log('🚀 ~ file: Start.tsx ~ line 114 ~ onPress={ ~ e', e)
+                  setModalVisible(false)
+                  setLoading(false)
+                  return
                 }
-              } catch (e) {
                 console.log('🚀 ~ file: Start.tsx ~ line 118 ~ onPress={ ~ e', e)
+                setModalVisible(false)
+                setLoading(false)
               }
             }}
           />
