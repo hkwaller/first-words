@@ -19,7 +19,7 @@ type State = {
     wordsPlayed: number
     wordsLearnt: string[]
     lastWordCount: number
-    hasPurchased?: boolean
+    purchased?: boolean
   }
 }
 
@@ -33,7 +33,7 @@ export const state = easyStore<State>({
   currentLetterCasing: 'uppercase',
   currentLettersGame: '',
   settings: {
-    language: 'no',
+    language: 'en',
     name: '',
     preferredAmountWords: 10,
     preferredAmountLetters: 10,

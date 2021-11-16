@@ -3,13 +3,14 @@ import { StyleSheet, View } from 'react-native'
 import { uniq } from 'lodash'
 import { view } from '@risingstack/react-easy-state'
 import Animated from 'react-native-reanimated'
+import ConfettiCannon from 'react-native-confetti-cannon'
 import { useNavigation } from '@react-navigation/native'
 import Word from 'src/components/Word'
 import { state } from 'src/backend/data'
 import Button from 'src/components/Button'
 import { t } from 'src/backend/lang'
 import { save } from 'src/config/helpers'
-import { colors, s } from 'src/config/constants'
+import { colors, SCREEN_HEIGHT, SCREEN_WIDTH } from 'src/config/constants'
 import SmallButton from 'src/components/SmallButton'
 import BackButton from 'src/components/BackButton'
 
@@ -22,6 +23,23 @@ function FreePlay() {
   //     backgroundColor: withTiming(s[activeIndex]),
   //   }
   // }, [activeIndex])
+
+  function handleReturn(to?: 'start' | undefined) {
+    state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
+
+    state.settings.wordsLearnt = uniq([
+      ...(state.settings.wordsLearnt || []),
+      ...state.currentGame.map(w => w._id),
+    ])
+
+    save('settings', JSON.stringify(state.settings))
+
+    if (to === 'start') {
+      navigation.navigate('Start')
+    } else {
+      navigation.goBack()
+    }
+  }
 
   return (
     <>
@@ -42,29 +60,19 @@ function FreePlay() {
           )
         })}
         {activeIndex === state.currentGame.length && (
-          <View style={{ marginHorizontal: 20, width: '90%' }}>
-            <Button
-              title={t('play_more')}
-              onPress={() => {
-                state.settings.wordsPlayed = state.settings.wordsPlayed + state.currentGame.length
-
-                state.settings.wordsLearnt = uniq([
-                  ...(state.settings.wordsLearnt || []),
-                  ...state.currentGame.map(w => w._id),
-                ])
-
-                save('settings', JSON.stringify(state.settings))
-                navigation.goBack()
-              }}
-            />
+          <View style={{ marginHorizontal: 20, width: '90%' }} anima>
+            <Button title={t('play_more')} onPress={() => handleReturn()} />
             <SmallButton
               title={t('back')}
-              onPress={() => navigation.navigate('Start')}
+              onPress={() => handleReturn('start')}
               backgroundColor={colors.yellow}
             />
           </View>
         )}
       </Animated.View>
+      {activeIndex === state.currentGame.length && (
+        <ConfettiCannon count={200} origin={{ x: SCREEN_WIDTH / 2, y: -100 }} fallSpeed={2000} />
+      )}
     </>
   )
 }

@@ -11,6 +11,12 @@ export default {
       type: 'localeString',
     },
     {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -18,18 +24,27 @@ export default {
         hotspot: true,
       },
     },
+  ],
+  orderings: [
     {
-      name: 'category',
       title: 'Category',
-      type: 'reference',
-      to: [{ type: 'category' }],
+      name: 'categoryAsc',
+      by: [{ field: `category.title.${baseLanguage.id}`, direction: 'asc' }],
     },
   ],
   preview: {
     select: {
       title: `word.${baseLanguage.id}`,
+      category: `category.title.${baseLanguage.id}`,
       media: 'image',
-      category: 'category',
+    },
+    prepare(selection) {
+      const { title, category, media } = selection
+      return {
+        title: title,
+        subtitle: category,
+        media: media,
+      }
     },
   },
 }

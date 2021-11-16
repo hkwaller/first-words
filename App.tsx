@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { View } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
+import Iaphub from 'react-native-iaphub'
 import { getCategories, getWords } from './src/backend/api'
 import { state } from 'src/backend/data'
 import Start from 'src/screens/start/Start'
@@ -12,9 +14,9 @@ import { getValueFor, save } from 'src/config/helpers'
 import Alphabet from 'src/screens/alphabet/Alphabet'
 import FreePlaySetup from 'src/screens/free-play/FreePlaySetup'
 import { colors } from 'src/config/constants'
-import { View } from 'react-native'
 import AlphabetSetup from 'src/screens/alphabet/AlphabetSetup'
 import Settings from 'src/screens/settings/Settings'
+import { apiKey, appId } from './tokens'
 
 const Stack = createStackNavigator()
 
@@ -26,13 +28,22 @@ function App() {
       const words = await getWords()
       const categories = await getCategories()
       const settings = await getValueFor('settings')
+
       state.words = words
       state.categories = categories
+
       if (settings) {
         state.settings = JSON.parse(settings as any)
         state.settings.lastWordCount = words.length
         save('settings', JSON.stringify(state.settings))
       }
+
+      await Iaphub.init({
+        appId: appId,
+        apiKey: apiKey,
+        environment: 'production',
+      })
+
       setEverythingLoaded(true)
     }
 

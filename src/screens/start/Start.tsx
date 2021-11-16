@@ -3,7 +3,6 @@ import { ScrollView, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { view } from '@risingstack/react-easy-state'
-import { requestPurchase, useIAP } from 'react-native-iap'
 import Button from 'src/components/Button'
 import { state } from 'src/backend/data'
 import { t } from 'src/backend/lang'
@@ -14,14 +13,12 @@ import StartHeader from './components/StartHeader'
 import IntroModal from 'src/components/intro-modal/IntroModal'
 import { BodyText } from 'src/components/styled'
 import { save } from 'src/config/helpers'
-
-const productIds = ['astrid_premium']
+import BuyModal from 'src/components/buy-modal/BuyModal'
 
 function Start() {
   const [modalVisible, setModalVisible] = useState(false)
   const navigation = useNavigation()
-
-  const { finishTransaction, currentPurchase } = useIAP()
+  const [buyModalVisible, setBuyModalVisible] = useState(false)
 
   useEffect(() => {
     if (state.settings.name?.length === 0) {
@@ -29,28 +26,12 @@ function Start() {
     }
   }, [])
 
-  useEffect(() => {
-    const checkCurrentPurchase = async (purchase: any): Promise<void> => {
-      if (purchase) {
-        const receipt = purchase.transactionReceipt
-        if (receipt)
-          try {
-            const ackResult = await finishTransaction(purchase)
-            console.log('ackResult', ackResult)
-          } catch (ackErr) {
-            console.warn('ackErr', ackErr)
-          }
-      }
-    }
-    checkCurrentPurchase(currentPurchase)
-  }, [currentPurchase, finishTransaction])
-
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200 }}>
       <SafeAreaView style={{ padding: 30, alignItems: 'center' }}>
         <StartHeader />
 
-        {state.settings.wordsPlayed < 100 || state.settings.hasPurchased ? (
+        {state.settings.wordsPlayed < 100 || state.settings.purchased ? (
           <>
             <Button
               title={t('start')}
@@ -81,32 +62,28 @@ function Start() {
           onPress={() => navigation.navigate('Settings')}
           backgroundColor={colors.lightPink}
         />
-        {state.settings.wordsPlayed > 100 && !state.settings.hasPurchased ? (
+        {__DEV__ && (
+          <SmallButton
+            title="Ta bort köp"
+            backgroundColor={colors.lightPink}
+            onPress={() => {
+              state.settings.purchased = false
+            }}
+          />
+        )}
+        {state.settings.wordsPlayed > 50 && !state.settings.purchased ? (
           <View
             style={{ backgroundColor: 'gray', padding: 20, borderRadius: 20, marginBottom: 20 }}
           >
             <BodyText style={{ color: 'white' }}>
               {`${t('begging_1')} ${100 - state.settings.wordsPlayed} ${t('begging_2')}`}
             </BodyText>
-            <SmallButton
-              title={t('buy')}
-              onPress={async () => {
-                try {
-                  const purchase = await requestPurchase('astrid_premium')
-
-                  if (purchase) {
-                    state.settings.hasPurchased = true
-                    save('settings', JSON.stringify(state.settings))
-                  }
-                } catch (e) {
-                  console.log('🚀 ~ file: Start.tsx ~ line 118 ~ onPress={ ~ e', e)
-                }
-              }}
-            />
+            <SmallButton title={t('buy')} onPress={() => setBuyModalVisible(true)} />
           </View>
         ) : null}
       </SafeAreaView>
       <IntroModal isVisible={modalVisible} setModalVisible={setModalVisible} />
+      <BuyModal isVisible={buyModalVisible} setModalVisible={setBuyModalVisible} />
     </ScrollView>
   )
 }

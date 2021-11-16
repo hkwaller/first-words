@@ -51,9 +51,9 @@ function LanguageSelector() {
           ]}
         />
         <LanguageButton
-          langCode="no"
+          langCode="en"
           onPress={() => {
-            saveLanguage('no')
+            saveLanguage('en')
             x.value = 0
           }}
         />
@@ -65,9 +65,9 @@ function LanguageSelector() {
           }}
         />
         <LanguageButton
-          langCode="en"
+          langCode="no"
           onPress={() => {
-            saveLanguage('en')
+            saveLanguage('no')
             x.value = (viewWidth / 3) * 2
           }}
         />

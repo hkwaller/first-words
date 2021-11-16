@@ -1,3 +1,4 @@
+import { view } from '@risingstack/react-easy-state'
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { t } from 'src/backend/lang'
@@ -36,4 +37,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PageTwo
+export default view(PageTwo)
