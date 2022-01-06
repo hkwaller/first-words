@@ -30,7 +30,11 @@ function Start() {
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 200 }}>
       <SafeAreaView style={{ padding: 30, alignItems: 'center' }}>
         <StartHeader />
-
+        {state.sinceLastTime > 0 ? (
+          <BodyText style={{ marginBottom: 20 }}>
+            {t('since_last')}: {state.sinceLastTime}
+          </BodyText>
+        ) : null}
         {state.settings.wordsPlayed < 100 || state.settings.purchased ? (
           <>
             <Button
@@ -56,7 +60,6 @@ function Start() {
             />
           </>
         ) : null}
-
         <SmallButton
           title={t('settings')}
           onPress={() => navigation.navigate('Settings')}

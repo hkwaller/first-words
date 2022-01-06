@@ -1,4 +1,5 @@
-import { store as easyStore } from '@risingstack/react-easy-state'
+import { autoEffect, store as easyStore } from '@risingstack/react-easy-state'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Animal, Word, Category } from './types'
 
 type State = {
@@ -10,6 +11,8 @@ type State = {
   currentLetterCategory: 'consonants' | 'vowels' | 'all'
   currentLetterCasing: 'uppercase' | 'lowercase' | 'mixed'
   currentLettersGame: string
+  currentWordCount: number
+  sinceLastTime: number
   settings: {
     language: 'no' | 'sv' | 'en'
     name?: string
@@ -32,6 +35,8 @@ export const state = easyStore<State>({
   currentLetterCategory: 'all',
   currentLetterCasing: 'uppercase',
   currentLettersGame: '',
+  currentWordCount: 0,
+  sinceLastTime: 0,
   settings: {
     language: 'en',
     name: '',

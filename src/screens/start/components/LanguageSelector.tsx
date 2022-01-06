@@ -1,5 +1,5 @@
 import { view } from '@risingstack/react-easy-state'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import { state } from 'src/backend/data'
@@ -13,6 +13,14 @@ import { save } from 'src/config/helpers'
 function LanguageSelector() {
   const x = useSharedValue(0)
   const [viewWidth, setViewWidth] = useState(0)
+
+  useEffect(() => {
+    if (state.settings.language === 'no') {
+      x.value = (viewWidth / 3) * 2
+    } else if (state.settings.language === 'sv') {
+      x.value = viewWidth / 3
+    }
+  }, [viewWidth])
 
   const style = useAnimatedStyle(() => {
     return {

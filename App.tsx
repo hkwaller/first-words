@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import { view } from '@risingstack/react-easy-state'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { StatusBar } from 'expo-status-bar'
@@ -31,6 +32,10 @@ function App() {
 
       state.words = words
       state.categories = categories
+      const lastLength = (await AsyncStorage.getItem('@wordCount')) || '0'
+      state.sinceLastTime = words.length - parseInt(lastLength)
+      state.currentWordCount = words.length
+      await AsyncStorage.setItem('@wordCount', `${state.currentWordCount}`)
 
       if (settings) {
         state.settings = JSON.parse(settings as any)
@@ -38,11 +43,11 @@ function App() {
         save('settings', JSON.stringify(state.settings))
       }
 
-      await Iaphub.init({
-        appId: appId,
-        apiKey: apiKey,
-        environment: 'production',
-      })
+      // await Iaphub.init({
+      //   appId: appId,
+      //   apiKey: apiKey,
+      //   environment: 'production',
+      // })
 
       setEverythingLoaded(true)
     }

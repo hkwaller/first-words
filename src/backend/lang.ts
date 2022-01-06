@@ -43,6 +43,7 @@ export const translations = {
     words_learnt_2: 'ord siden du startet!',
     continue: 'Videre',
     loading: 'Laster...',
+    since_last: 'Nye ord siden sist vi så deg',
   },
   sv: {
     start: 'Bildlek',
@@ -86,6 +87,7 @@ export const translations = {
     words_learnt_2: 'ord sedan du startade!',
     continue: 'Gå vidare',
     loading: 'Laddar...',
+    since_last: 'Nya ord sedan sist vi såg dig',
   },
   en: {
     start: 'Picture game',
@@ -129,6 +131,7 @@ export const translations = {
     words_learnt_2: 'words since you started!',
     continue: 'Continue',
     loading: 'Loading...',
+    since_last: 'New words since we last saw you',
   },
 }
 
