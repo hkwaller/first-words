@@ -31,6 +31,11 @@ export default {
       name: 'categoryAsc',
       by: [{ field: `category.title.${baseLanguage.id}`, direction: 'asc' }],
     },
+    {
+      title: 'Title',
+      name: 'titleAsc',
+      by: [{ field: `word.${baseLanguage.id}`, direction: 'asc' }],
+    },
   ],
   preview: {
     select: {
