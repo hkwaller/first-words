@@ -32,10 +32,14 @@ function App() {
 
       state.words = words
       state.categories = categories
-      const lastLength = (await AsyncStorage.getItem('@wordCount')) || '0'
-      state.sinceLastTime = words.length - parseInt(lastLength)
-      state.currentWordCount = words.length
-      await AsyncStorage.setItem('@wordCount', `${state.currentWordCount}`)
+
+      const lastLength = parseInt((await AsyncStorage.getItem('@wordCount')) || '0')
+
+      if (lastLength > 0) {
+        state.sinceLastTime = words.length - lastLength
+        state.currentWordCount = words.length
+        await AsyncStorage.setItem('@wordCount', `${state.currentWordCount}`)
+      }
 
       if (settings) {
         state.settings = JSON.parse(settings as any)
